@@ -14,4 +14,9 @@
         <item name="android:windowLightStatusBar" tools:targetApi="n">true</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!--  Splash Screen Theme-->
+    <style name="SplashTheme" parent="Theme.KataKerjaApps">
+        <item name="android:windowBackground">@drawable/layer_splash_bg</item>
+    </style>
 </resources>

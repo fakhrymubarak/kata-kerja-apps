@@ -4,7 +4,9 @@
     <color name="blue_variant">#0C4C7C</color>
     <color name="salmon">#FD8763</color>
     <color name="salmon_variant">#CC522D</color>
+    <color name="blue_soft">#E6F1F3</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
 </resources>
