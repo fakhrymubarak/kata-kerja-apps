@@ -1,4 +1,8 @@
 <resources>
     <!-- RADIUS  -->
     <dimen name="radius_btn">8dp</dimen>
+    <dimen name="radius_card">12dp</dimen>
+
+    <!--  ELEVATION  -->
+    <dimen name="elevation_card">4dp</dimen>
 </resources>

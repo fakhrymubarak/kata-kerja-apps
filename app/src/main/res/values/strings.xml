@@ -17,4 +17,8 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="cd_illustration">Illustrasi</string>
+    <string name="hello">Hello,</string>
+    <string name="has_read">Telah Dibaca</string>
+    <string name="borrowed">Buku Dipinjam</string>
+    <string name="borrowing">Sedang Dipinjam</string>
 </resources>

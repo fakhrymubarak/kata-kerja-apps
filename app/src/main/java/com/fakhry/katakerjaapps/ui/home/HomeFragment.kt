@@ -16,7 +16,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        val textView: TextView = binding.textHome
+        val textView: TextView = binding.tvName
         homeViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })

@@ -24,9 +24,20 @@
     <!--  TEXT STYLES  -->
     <style name="TextStyles" parent="Widget.AppCompat.TextView" />
 
+    <style name="TextStyles.PoppinsExtraExtraLarge">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">44sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
     <style name="TextStyles.PoppinsLarge">
         <item name="android:fontFamily">@font/poppins_semibold</item>
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextStyles.PoppinsLarge.Black">
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextStyles.PoppinsLarge.Blue">
@@ -38,7 +49,17 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="TextStyles.PoppinsRegular.Black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="TextStyles.PoppinsRegular.Gray">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextStyles.PoppinsSmall">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/gray</item>
     </style>
 
