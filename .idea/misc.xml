@@ -5,6 +5,14 @@
       <map>
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_arrow_left_blue.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_arrow_right_white.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_book_active.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_book_inactive.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_borrowed_book.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_home.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_home_inactive.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_readed_book.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_wishlist_active.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_wishlist_inactive.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/illust_ob1.xml" value="0.11666666666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/illust_ob2.xml" value="0.11666666666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/illust_ob3.xml" value="0.11666666666666667" />
@@ -13,7 +21,7 @@
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/shape_circle_gray.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/shape_rec_fill_blue.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/shape_rec_outline_blue.xml" value="0.22604166666666667" />
-        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_main.xml" value="0.10052083333333334" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_on_boarding.xml" value="0.22" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_onboarding.xml" value="0.20989583333333334" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_home.xml" value="0.20989583333333334" />
@@ -21,6 +29,7 @@
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_onboarding.xml" value="0.22" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_onboarding3.xml" value="0.20989583333333334" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/item_card_layout.xml" value="0.20989583333333334" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20989583333333334" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.11666666666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.11666666666666667" />
       </map>
