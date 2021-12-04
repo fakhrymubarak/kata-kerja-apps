@@ -29,5 +29,11 @@
     <string name="search_hint">Cari buku untuk dipinjam…</string>
     <string name="your_wishlist">Wishlist Kamu</string>
     <string name="stock">Stok : %1$d buku</string>
+    <string name="detail_buku">Detail Buku</string>
+    <string name="category">Kategori</string>
+    <string name="year">Tahun</string>
+    <string name="isbn">ISBN</string>
+    <string name="publisher">Penerbit</string>
+    <string name="book_desc">Deskripsi Buku</string>
 
 </resources>

@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_arrow_left_black.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_arrow_left_blue.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_arrow_right_black.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_arrow_right_white.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_book_active.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_book_inactive.xml" value="0.22604166666666667" />
@@ -22,6 +24,7 @@
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/shape_circle_gray.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/shape_rec_fill_blue.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/shape_rec_outline_blue.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_book_details.xml" value="0.22" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_on_boarding.xml" value="0.22" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_onboarding.xml" value="0.20989583333333334" />
