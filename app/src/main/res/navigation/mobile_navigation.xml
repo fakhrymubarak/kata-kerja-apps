@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_book"
-        android:name="com.fakhry.katakerjaapps.ui.dashboard.DashboardFragment"
+        android:name="com.fakhry.katakerjaapps.ui.book.BookFragment"
         android:label="@string/title_book"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_book" />
 
     <fragment
         android:id="@+id/navigation_wishlist"
