@@ -27,5 +27,7 @@
     <!--  BOOK  -->
     <string name="newest_book">Buku Terbaru</string>
     <string name="search_hint">Cari buku untuk dipinjam…</string>
-    
+    <string name="your_wishlist">Wishlist Kamu</string>
+    <string name="stock">Stok : %1$d buku</string>
+
 </resources>

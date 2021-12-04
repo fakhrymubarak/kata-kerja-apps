@@ -31,8 +31,10 @@
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_on_boarding.xml" value="0.25" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_onboarding.xml" value="0.22" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_onboarding3.xml" value="0.20989583333333334" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_wishlist.xml" value="0.25" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/item_book.xml" value="0.20989583333333334" />
-        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/item_book_home.xml" value="0.5" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/item_book_home.xml" value="0.33" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/item_book_wishlist.xml" value="0.33" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/item_card_layout.xml" value="0.20989583333333334" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/item_statistics.xml" value="0.25" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20989583333333334" />
