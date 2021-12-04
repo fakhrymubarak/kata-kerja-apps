@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KataKerjaApps">
         <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.BookDetailsActivity"
             android:exported="false" />
         <activity
@@ -25,6 +28,7 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

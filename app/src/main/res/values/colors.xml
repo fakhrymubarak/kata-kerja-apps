@@ -13,6 +13,7 @@
 
     <color name="black">#FF000000</color>
     <color name="gray">#FF333333</color>
+    <color name="gray_light">#BBBBBB</color>
     <color name="white">#FFFFFFFF</color>
 
 </resources>

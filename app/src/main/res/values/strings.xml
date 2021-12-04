@@ -35,5 +35,10 @@
     <string name="isbn">ISBN</string>
     <string name="publisher">Penerbit</string>
     <string name="book_desc">Deskripsi Buku</string>
+    <string name="edit_profile">Edit Profil</string>
+    <string name="settings">Pengaturan</string>
+    <string name="about_us">Tentang Kami</string>
+    <string name="logout">Log Out</string>
+    <string name="title_profile">Profile</string>
 
 </resources>
