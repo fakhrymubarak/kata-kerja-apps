@@ -1,60 +1,51 @@
 package com.fakhry.katakerjaapps.ui.onboarding
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.fragment.app.Fragment
 import com.fakhry.katakerjaapps.R
+import com.fakhry.katakerjaapps.adapter.SectionsPagerAdapter
+import com.fakhry.katakerjaapps.core.utils.viewBinding
+import com.fakhry.katakerjaapps.databinding.FragmentOnBoardingBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [OnBoardingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class OnBoardingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
+    private val binding by viewBinding(FragmentOnBoardingBinding::bind)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        arguments?.let { populateView(it.getInt(SectionsPagerAdapter.EXTRA_PAGE, 0)) }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_on_boarding, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Onboarding1Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OnBoardingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun populateView(page: Int) {
+        val drawableImage = AppCompatResources.getDrawable(
+            requireContext(),
+            when (page) {
+                1 -> R.drawable.illust_ob1
+                2 -> R.drawable.illust_ob2
+                else -> R.drawable.illust_ob3
             }
+        )
+        val title = getString(
+            when (page) {
+                1 -> R.string.title_ob1
+                2 -> R.string.title_ob2
+                else -> R.string.title_ob3
+            }
+        )
+        val desc = getString(
+            when (page) {
+                1 -> R.string.desc_ob1
+                2 -> R.string.desc_ob2
+                else -> R.string.desc_ob3
+            }
+        )
+        binding.apply {
+            imageView.setImageDrawable(drawableImage)
+            tvOnboardingTitle.text = title
+            tvOnboardingDesc.text = desc
+        }
     }
 }

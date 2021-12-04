@@ -1,49 +1,57 @@
 package com.fakhry.katakerjaapps.core.utils
-
-import android.os.Handler
-import android.os.Looper
 import android.view.View
-import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-/**
-Delegation Utility Class
- */
-class FragmentViewBindingProperty< T : ViewBinding>(
-    private val viewBinder: (View) -> T
+class FragmentViewBindingDelegate<T : ViewBinding>(
+    val fragment: Fragment,
+    val viewBindingFactory: (View) -> T
 ) : ReadOnlyProperty<Fragment, T> {
-    private var viewBinding: T? = null
-    private val lifecycleObserver = BindingLifecycleObserver()
+    private var binding: T? = null
 
-    @MainThread
-    override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
-        this.viewBinding?.let { return it }
-        val view = thisRef.requireView()
-        thisRef.viewLifecycleOwner.lifecycle.addObserver(lifecycleObserver)
-        return viewBinder(view).also { vb -> this.viewBinding = vb }
-    }
+    init {
+        fragment.lifecycle.addObserver(object : DefaultLifecycleObserver {
+            val viewLifecycleOwnerLiveDataObserver =
+                Observer<LifecycleOwner?> {
+                    val viewLifecycleOwner = it ?: return@Observer
 
-    private inner class BindingLifecycleObserver : DefaultLifecycleObserver {
+                    viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+                        override fun onDestroy(owner: LifecycleOwner) {
+                            binding = null
+                        }
+                    })
+                }
 
-        private val mainHandler = Handler(Looper.getMainLooper())
-
-        @MainThread
-        override fun onDestroy(owner: LifecycleOwner) {
-            owner.lifecycle.removeObserver(this)
-            // Fragment.viewLifecycleOwner call LifecycleObserver.onDestroy() before Fragment.onDestroyView().
-            // That's why we need to postpone reset of the viewBinding
-            mainHandler.post {
-                viewBinding = null
+            override fun onCreate(owner: LifecycleOwner) {
+                fragment.viewLifecycleOwnerLiveData.observeForever(viewLifecycleOwnerLiveDataObserver)
             }
+
+            override fun onDestroy(owner: LifecycleOwner) {
+                fragment.viewLifecycleOwnerLiveData.removeObserver(viewLifecycleOwnerLiveDataObserver)
+            }
+        })
+    }
+
+    override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
+        val binding = binding
+        if (binding != null) {
+            return binding
         }
+
+        val lifecycle = fragment.viewLifecycleOwner.lifecycle
+        if (!lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
+            throw IllegalStateException("Should not attempt to get bindings when Fragment views are destroyed.")
+        }
+
+        return viewBindingFactory(thisRef.requireView()).also { this.binding = it }
     }
 }
 
-inline fun <reified T : ViewBinding> viewBinding(noinline viewBinder: (View) -> T): ReadOnlyProperty<Fragment, T> {
-    return FragmentViewBindingProperty(viewBinder)
-}
+fun <T : ViewBinding> Fragment.viewBinding(viewBindingFactory: (View) -> T) =
+    FragmentViewBindingDelegate(this, viewBindingFactory)
