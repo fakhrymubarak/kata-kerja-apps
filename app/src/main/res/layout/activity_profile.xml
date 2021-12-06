@@ -8,12 +8,13 @@
 
     <ImageButton
         android:id="@+id/btn_back"
-        style="@style/Button.Transparent"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="@null"
         android:contentDescription="@string/cd_illustration"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:padding="10dp"
         android:src="@drawable/ic_arrow_left_black"
         app:layout_constraintStart_toStartOf="parent"
