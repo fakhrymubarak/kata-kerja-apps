@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_add.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_arrow_left_black.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_arrow_left_blue.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_arrow_right_black.xml" value="0.22604166666666667" />
@@ -11,6 +12,7 @@
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_book_inactive.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_borrowed_book.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_delete.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_home.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_home_inactive.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/ic_readed_book.xml" value="0.22604166666666667" />
@@ -20,6 +22,7 @@
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/illust_ob2.xml" value="0.11666666666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/illust_ob3.xml" value="0.11666666666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/layer_splash_bg.xml" value="0.22604166666666667" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/selector_text_input_box_stroke.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/shape_circle_blue.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/shape_circle_gray.xml" value="0.22604166666666667" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/drawable/shape_rec_fill_blue.xml" value="0.22604166666666667" />
@@ -30,9 +33,10 @@
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_on_boarding.xml" value="0.22" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_onboarding.xml" value="0.20989583333333334" />
-        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_profile.xml" value="0.25" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/activity_profile.xml" value="0.75" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_book.xml" value="0.33" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_dashboard.xml" value="0.20989583333333334" />
+        <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_edit_profile.xml" value="0.2" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_home.xml" value="0.25596816976127323" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_on_boarding.xml" value="0.25" />
         <entry key="..\:/Programming/Android/project-coolyeah/KataKerjaApps/app/src/main/res/layout/fragment_onboarding.xml" value="0.22" />
