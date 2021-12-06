@@ -1,13 +1,13 @@
-package com.fakhry.katakerjaapps.ui.book
+package com.fakhry.katakerjaapps.ui.dashboard.wishlist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class BookViewModel : ViewModel() {
+class WishListViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is notifications Fragment"
     }
     val text: LiveData<String> = _text
 }

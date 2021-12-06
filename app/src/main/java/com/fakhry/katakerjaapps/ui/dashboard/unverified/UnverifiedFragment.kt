@@ -1,4 +1,4 @@
-package com.fakhry.katakerjaapps.ui.unverified
+package com.fakhry.katakerjaapps.ui.dashboard.unverified
 
 import android.os.Bundle
 import android.view.View

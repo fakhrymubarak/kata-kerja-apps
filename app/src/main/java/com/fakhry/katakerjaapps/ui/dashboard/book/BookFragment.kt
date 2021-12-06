@@ -1,4 +1,4 @@
-package com.fakhry.katakerjaapps.ui.book
+package com.fakhry.katakerjaapps.ui.dashboard.book
 
 import android.os.Bundle
 import android.view.View

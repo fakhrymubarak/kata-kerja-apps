@@ -1,4 +1,4 @@
-package com.fakhry.katakerjaapps.ui
+package com.fakhry.katakerjaapps.ui.dashboard
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

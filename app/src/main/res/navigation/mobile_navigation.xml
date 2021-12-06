@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.fakhry.katakerjaapps.ui.home.HomeFragment"
+        android:name="com.fakhry.katakerjaapps.ui.dashboard.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -17,19 +17,19 @@
 
     <fragment
         android:id="@+id/navigation_book"
-        android:name="com.fakhry.katakerjaapps.ui.book.BookFragment"
+        android:name="com.fakhry.katakerjaapps.ui.dashboard.book.BookFragment"
         android:label="@string/title_book"
         tools:layout="@layout/fragment_book" />
 
     <fragment
         android:id="@+id/navigation_wishlist"
-        android:name="com.fakhry.katakerjaapps.ui.wishlist.WishlistFragment"
+        android:name="com.fakhry.katakerjaapps.ui.dashboard.wishlist.WishlistFragment"
         android:label="@string/title_wishlist"
         tools:layout="@layout/fragment_wishlist" />
 
     <fragment
         android:id="@+id/navigation_unverified"
-        android:name="com.fakhry.katakerjaapps.ui.unverified.UnverifiedFragment"
+        android:name="com.fakhry.katakerjaapps.ui.dashboard.unverified.UnverifiedFragment"
         android:label="@string/title_unverified"
         tools:layout="@layout/fragment_unverified" />
 </navigation>

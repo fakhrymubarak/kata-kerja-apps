@@ -1,4 +1,4 @@
-package com.fakhry.katakerjaapps.ui.wishlist
+package com.fakhry.katakerjaapps.ui.dashboard.wishlist
 
 import android.os.Bundle
 import android.view.View
