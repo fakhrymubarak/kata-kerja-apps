@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Kata Kerja Apps</string>
+    <string name="app_version">Version %1$s</string>
+    <string name="copyright">Copyright© %1$d Kata Kerja</string>
 
     <!--  ON BOARDING  -->
     <string name="title_ob1">Cari Buku Favoritmu</string>
@@ -50,12 +52,14 @@
     <string name="phone_number">No. Telp</string>
     <string name="update">Update</string>
 
-    <!--  SETTING -->
+    <!--  SETTING AND ABOUT -->
     <string name="night_mode">Mode Malam</string>
+    <string name="see_oss_license">Lihat lisensi open source</string>
 
     <!--  CONTENT DESCRIPTION  -->
     <string name="cd_avatar">Avatar</string>
     <string name="cd_illustration">Illustrasi</string>
     <string name="cd_button_add_avatar">Tombol Tambah Avatar</string>
+    <string name="cd_logo">Logo</string>
 
 </resources>

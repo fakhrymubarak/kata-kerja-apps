@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KataKerjaApps">
         <activity
-            android:name=".ui.ProfileActivity"
+            android:name=".ui.profile.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.BookDetailsActivity"
