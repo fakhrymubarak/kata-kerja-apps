@@ -2,7 +2,6 @@ package com.fakhry.katakerjaapps.ui.home
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.fakhry.katakerjaapps.R
@@ -16,9 +15,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        val textView: TextView = binding.tvName
         homeViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
+            binding.itemHeader.tvName.text = it
         })
+
+        binding.itemStatistics.apply {
+            tvNumberBorrow.text = 10.toString()
+            tvNumberRead.text = 10.toString()
+        }
     }
 }

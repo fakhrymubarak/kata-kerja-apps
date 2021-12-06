@@ -10,45 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="@string/cd_illustration"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/tv_hello"
-            style="@style/TextStyles.PoppinsRegular"
-            android:layout_width="wrap_content"
+        <include
+            android:id="@+id/item_header"
+            layout="@layout/item_header"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/hello"
+            app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iv_profile" />
-
-        <TextView
-            android:id="@+id/tv_name"
-            style="@style/TextStyles.PoppinsRegular.Black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="@+id/tv_hello"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hello"
-            tools:text="A. Muh. Fakhry Mubarak" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/include"
+            android:id="@+id/item_statistics"
             layout="@layout/item_statistics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+            app:layout_constraintTop_toBottomOf="@id/item_header" />
 
         <TextView
             android:id="@+id/tv_borrowed"
@@ -58,7 +36,7 @@
             android:layout_marginStart="16dp"
             android:text="@string/borrowing"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
+            app:layout_constraintTop_toBottomOf="@+id/item_statistics" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_borrowing"
