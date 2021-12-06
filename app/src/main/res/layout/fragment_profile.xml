@@ -106,7 +106,7 @@
             android:drawablePadding="8dp"
             android:elevation="10dp"
             android:paddingHorizontal="16dp"
-            android:text="@string/settings"
+            android:text="@string/setting"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_edit_profile" />
