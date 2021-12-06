@@ -61,5 +61,8 @@
     <string name="cd_illustration">Illustrasi</string>
     <string name="cd_button_add_avatar">Tombol Tambah Avatar</string>
     <string name="cd_logo">Logo</string>
+    <string name="desc_acc_unverified">Silahkan Meminta Konfirmasi Member \ndari Staff Kata Kerja</string>
+    <string name="visi_katakerja">Kunjungi Kata Kerja</string>
+    <string name="title_unverified">Unverified</string>
 
 </resources>

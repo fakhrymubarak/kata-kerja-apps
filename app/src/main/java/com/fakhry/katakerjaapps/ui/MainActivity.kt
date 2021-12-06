@@ -21,5 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
+
+        // if role is 4 then :
+        // navController.navigate(R.id.action_navigation_home_to_navigation_unverified)
+        // binding.navView.visibility = View.INVISIBLE
     }
 }

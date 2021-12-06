@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.fakhry.katakerjaapps.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_unverified"
+            app:destination="@id/navigation_unverified" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_book"
@@ -22,4 +26,10 @@
         android:name="com.fakhry.katakerjaapps.ui.wishlist.WishlistFragment"
         android:label="@string/title_wishlist"
         tools:layout="@layout/fragment_wishlist" />
+
+    <fragment
+        android:id="@+id/navigation_unverified"
+        android:name="com.fakhry.katakerjaapps.ui.unverified.UnverifiedFragment"
+        android:label="@string/title_unverified"
+        tools:layout="@layout/fragment_unverified" />
 </navigation>
