@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.android.gms.oss-licenses-plugin'
 }
 apply from: '../shared_dependencies.gradle'
 
@@ -45,9 +46,13 @@ dependencies {
     // ui
     implementation "androidx.appcompat:appcompat:1.4.0"
     implementation "androidx.constraintlayout:constraintlayout:2.1.2"
+    implementation 'com.google.android.material:material:1.4.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshVersion"
 
-    //navigation
+    // image
+    implementation "io.coil-kt:coil:$coil_version"
+
+    // navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
@@ -57,7 +62,9 @@ dependencies {
     // dots indicator
     implementation 'com.tbuonomo:dotsindicator:4.2'
 
-    //viewpager2
+    // viewpager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
-    implementation 'com.google.android.material:material:1.4.0'
+
+    // open source notices
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 }
