@@ -65,6 +65,7 @@
     <string name="desc_acc_unverified">Silahkan Meminta Konfirmasi Member \ndari Staff Kata Kerja</string>
     <string name="visit_katakerja">Kunjungi Kata Kerja</string>
 
+    <!-- LOGIN -->
     <string name="login_title">Selamat Datang Kembali!</string>
     <string name="login_desc">Silakan login ke aplikasi KataKerja</string>
     <string name="password">Password</string>
@@ -72,6 +73,13 @@
     <string name="log_in">Log In</string>
     <string name="or">atau</string>
     <string name="log_in_with_google">Log In dengan Google</string>
-    <string name="login_to_register">Belum punya akun? Sign In</string>
+    <string name="login_to_register">Belum punya akun? Sign Up</string>
+
+    <!--  REGISTER  -->
+    <string name="register_title">Buat Akun Baru</string>
+    <string name="register_desc">Silakan buat akun baru</string>
+    <string name="register_to_login">Sudah punya akun? Log In</string>
+    <string name="register_with_google">Sign Up dengan Google</string>
+    <string name="register_btn">Sign Up</string>
 
 </resources>
