@@ -53,7 +53,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:drawableStart="@drawable/ic_maps"
-            android:text="@string/visi_katakerja"
+            android:text="@string/visit_katakerja"
             android:paddingHorizontal="32dp"
             android:drawablePadding="8dp"
             app:layout_constraintEnd_toEndOf="parent"

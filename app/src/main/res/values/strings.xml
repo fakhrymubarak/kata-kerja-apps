@@ -18,6 +18,7 @@
     <string name="title_home">Home</string>
     <string name="title_book">Book</string>
     <string name="title_wishlist">Wishlist</string>
+    <string name="title_unverified">Unverified</string>
 
     <!--  HOME  -->
     <string name="hello">Hello,</string>
@@ -62,7 +63,15 @@
     <string name="cd_button_add_avatar">Tombol Tambah Avatar</string>
     <string name="cd_logo">Logo</string>
     <string name="desc_acc_unverified">Silahkan Meminta Konfirmasi Member \ndari Staff Kata Kerja</string>
-    <string name="visi_katakerja">Kunjungi Kata Kerja</string>
-    <string name="title_unverified">Unverified</string>
+    <string name="visit_katakerja">Kunjungi Kata Kerja</string>
+
+    <string name="login_title">Selamat Datang Kembali!</string>
+    <string name="login_desc">Silakan login ke aplikasi KataKerja</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Lupa Password?</string>
+    <string name="log_in">Log In</string>
+    <string name="or">atau</string>
+    <string name="log_in_with_google">Log In dengan Google</string>
+    <string name="login_to_register">Belum punya akun? Sign In</string>
 
 </resources>
