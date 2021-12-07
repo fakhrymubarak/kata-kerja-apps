@@ -55,6 +55,11 @@
     <string name="phone_number">No. Telp</string>
     <string name="update">Update</string>
 
+    <!--  CHANGE PASSWORD -->
+    <string name="old_password">Password Lama</string>
+    <string name="new_password">Password Baru</string>
+    <string name="confirm_new_password">Konfirmasi Password Baru</string>
+
     <!--  SETTING AND ABOUT -->
     <string name="night_mode">Mode Malam</string>
     <string name="see_oss_license">Lihat lisensi open source</string>
