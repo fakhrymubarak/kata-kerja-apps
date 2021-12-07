@@ -22,6 +22,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             btnEditProfile.setOnClickListener {
                 navController.navigate(R.id.action_nav_profile_to_nav_edit_profile)
             }
+            btnChangePassword.setOnClickListener {
+
+            }
             btnSettings.setOnClickListener {
                 navController.navigate(R.id.action_nav_profile_to_nav_setting)
             }
