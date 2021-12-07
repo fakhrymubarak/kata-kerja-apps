@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    android:paddingBottom="200dp"
-    tools:context=".ui.dashboard.book.details.BookDetailsActivity">
+    android:paddingBottom="200dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,43 +39,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_address"
-            style="@style/TextInput"
-            android:layout_marginTop="16dp"
-            android:hint="@string/full_address"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_address"
-                style="@style/TextInputEdit"
-                android:inputType="textCapWords" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_born_date"
-            style="@style/TextInput"
-            android:layout_marginTop="16dp"
-            android:hint="@string/born_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_address">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_born_date"
-                style="@style/TextInputEdit"
-                android:inputType="date" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_email"
             style="@style/TextInput"
             android:layout_marginTop="16dp"
             android:hint="@string/email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_born_date">
+            app:layout_constraintTop_toBottomOf="@+id/til_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_email"
@@ -99,6 +68,40 @@
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_born_date"
+            style="@style/TextInput"
+            android:layout_marginTop="16dp"
+            android:hint="@string/born_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_phone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_born_date"
+                style="@style/TextInputEdit"
+                android:inputType="date" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_address"
+            style="@style/TextInput"
+            android:layout_marginTop="16dp"
+            android:hint="@string/full_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_born_date">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_address"
+                style="@style/TextInputEdit"
+                android:gravity="top|start"
+                android:inputType="textMultiLine|textCapWords"
+                android:maxLines="10"
+                android:minLines="2"
+                android:scrollbars="vertical" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             style="@style/Button.Primary"
             android:layout_width="match_parent"
@@ -108,19 +111,17 @@
             android:text="@string/update"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/til_phone" />
+            app:layout_constraintTop_toBottomOf="@id/til_address" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn_update_avatar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:background="@null"
             android:contentDescription="@string/cd_button_add_avatar"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
             app:layout_constraintBottom_toBottomOf="@+id/iv_edit_avatar"
             app:layout_constraintEnd_toEndOf="@+id/iv_edit_avatar"
-            app:layout_constraintStart_toEndOf="@+id/iv_edit_avatar"
-            app:layout_constraintTop_toBottomOf="@+id/iv_edit_avatar"
             app:srcCompat="@drawable/ic_add" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

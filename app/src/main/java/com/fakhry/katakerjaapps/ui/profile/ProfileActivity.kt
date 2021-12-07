@@ -15,7 +15,6 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navController = findNavController(R.id.nav_host_fragment_activity_profile)
-
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.tvActivityTitle.text = destination.label
         }
@@ -23,5 +22,9 @@ class ProfileActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    companion object {
+        const val EXTRA_USER = "extra_user"
     }
 }
