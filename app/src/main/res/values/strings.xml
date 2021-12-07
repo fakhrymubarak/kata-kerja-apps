@@ -39,7 +39,9 @@
     <string name="book_desc">Deskripsi Buku</string>
 
     <!--  PROFILE  -->
+    <string name="joined_since">Bergabung sejak %1$s</string>
     <string name="edit_profile">Edit Profil</string>
+    <string name="change_password">Ganti Password</string>
     <string name="setting">Pengaturan</string>
     <string name="about_us">Tentang Kami</string>
     <string name="logout">Log Out</string>

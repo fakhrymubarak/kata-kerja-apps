@@ -18,6 +18,13 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
+            android:id="@+id/action_nav_profile_to_nav_change_password"
+            app:destination="@id/nav_change_password"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
             android:id="@+id/action_nav_profile_to_nav_setting"
             app:destination="@id/nav_setting"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -31,13 +38,26 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="extra_user"
+            app:argType="com.fakhry.katakerjaapps.core.domain.model.User" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_edit_profile"
         android:name="com.fakhry.katakerjaapps.ui.profile.edit.EditProfileFragment"
         android:label="@string/edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile">
+        <argument
+            android:name="extra_user"
+            app:argType="com.fakhry.katakerjaapps.core.domain.model.User" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_change_password"
+        android:name="com.fakhry.katakerjaapps.ui.profile.password.ChangePassword"
+        android:label="@string/change_password"
+        tools:layout="@layout/fragment_change_password" />
 
     <fragment
         android:id="@+id/nav_setting"
