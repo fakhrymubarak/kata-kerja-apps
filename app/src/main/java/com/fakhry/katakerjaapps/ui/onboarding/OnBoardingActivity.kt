@@ -1,11 +1,14 @@
 package com.fakhry.katakerjaapps.ui.onboarding
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.fakhry.katakerjaapps.adapter.SectionsPagerAdapter
 import com.fakhry.katakerjaapps.databinding.ActivityOnBoardingBinding
+import com.fakhry.katakerjaapps.ui.login.LoginActivity
+import com.fakhry.katakerjaapps.ui.register.RegisterActivity
 
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnBoardingBinding
@@ -30,9 +33,10 @@ class OnBoardingActivity : AppCompatActivity() {
                 obPosition += 1
                 populateView()
             }
-            btnSkip.setOnClickListener {
-                // Go To Login Register
-            }
+            btnSkip.setOnClickListener { intentTo(LoginActivity::class.java) }
+            btnLogin.setOnClickListener { intentTo(LoginActivity::class.java) }
+            btnRegister.setOnClickListener { intentTo(RegisterActivity::class.java) }
+
             vpOnBoarding.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
@@ -41,6 +45,12 @@ class OnBoardingActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    private fun <T> intentTo(destination: Class<T>) {
+        val intent = Intent(this, destination)
+        startActivity(intent)
+        finish()
     }
 
     private fun populateView() {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingBottom="200dp"
     android:clipToPadding="false"
-    tools:context=".ui.dashboard.book.details.BookDetailsActivity">
+    tools:context=".ui.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
