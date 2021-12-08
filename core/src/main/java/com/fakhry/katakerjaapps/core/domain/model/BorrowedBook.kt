@@ -8,7 +8,7 @@ data class BorrowedBook(
     val author: String,
     val publisher: String,
     val releaseYear: String,
-    val stock: String,
+    val stock: Int,
     val cover: String,
     val borrowDate: String,
     val returnDate: String,

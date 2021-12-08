@@ -8,7 +8,7 @@ data class Book(
     val author: String,
     val publisher: String,
     val releaseYear: String,
-    val stock: String,
+    val stock: Int,
     val cover: String,
     val category: String,
 )
