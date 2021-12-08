@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="125dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -61,8 +61,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="125dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:elevation="@dimen/elevation_card"
         android:padding="8dp"
