@@ -28,11 +28,12 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_cover"
             android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:src="@drawable/ic_read_book"
             app:cardCornerRadius="@dimen/radius_card"
             app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
+            app:layout_constraintDimensionRatio="13:19"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_detail_title">
 
@@ -196,6 +197,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_desc"
             tools:text="Pengetahuan tidak membuat seseorang berubah. Menambah informasi saja tidak rnembuat seseorang berubah. Masih ada tahapan yang dibutuhkan, selain informasi itu sendiri. Apa itu? Emosi di Balik Informasi.
 \n\nDalam buku ini, saya akan bicara tentang kesehatan mental, melawan stigma terhadap kesehatan mental, merawat kesejahteraan batin, dan mengajak untuk kembali kepada KEBAHAGIAAN." />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

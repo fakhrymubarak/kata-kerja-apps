@@ -21,9 +21,10 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_cover"
             android:layout_width="75dp"
-            android:layout_height="100dp"
+            android:layout_height="0dp"
             android:src="@drawable/ic_read_book"
             app:cardCornerRadius="@dimen/radius_card"
+            app:layout_constraintDimensionRatio="13:19"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

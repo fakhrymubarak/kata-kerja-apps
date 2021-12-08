@@ -19,12 +19,39 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/shape_rec_outline_blue"
-            android:inputType="textPersonName"
+            android:fontFamily="@font/poppins"
+            android:inputType="textCapWords"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:queryHint="@string/search_hint" />
+
+        <TextView
+            android:id="@+id/tv_populars"
+            style="@style/TextStyles.PoppinsLarge.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/popular_books"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_populars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_populars"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_book_cover_linear" />
 
         <TextView
             android:id="@+id/tv_newest"
@@ -35,49 +62,25 @@
             android:layout_marginTop="16dp"
             android:text="@string/newest_book"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_populars" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_newest"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:orientation="horizontal"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_newest"
-            tools:itemCount="4"
-            tools:listitem="@layout/item_book" />
-
-        <TextView
-            android:id="@+id/tv_borrowed"
-            style="@style/TextStyles.PoppinsLarge.Black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/newest_book"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_newest" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_borrowing"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_borrowed"
-            tools:itemCount="4"
-            tools:listitem="@layout/item_book" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_newest"
+            app:spanCount="3"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_book_cover_grid" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
