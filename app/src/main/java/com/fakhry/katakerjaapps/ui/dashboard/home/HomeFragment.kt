@@ -10,6 +10,7 @@ import coil.transform.CircleCropTransformation
 import com.fakhry.katakerjaapps.R
 import com.fakhry.katakerjaapps.adapter.ItemBookHomeAdapter
 import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
+import com.fakhry.katakerjaapps.core.domain.model.User
 import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentHomeBinding
 import com.fakhry.katakerjaapps.helper.Base64
@@ -30,9 +31,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
             binding.itemHeader.tvName.text = user.name
             binding.itemHeader.ivProfile.setOnClickListener {
-                val intent = Intent(requireContext(), ProfileActivity::class.java)
-                intent.putExtra(ProfileActivity.EXTRA_USER, user)
-                startActivity(intent)
+                intentTo(ProfileActivity::class.java, null, user)
             }
 
 
@@ -49,8 +48,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun populateBorrowedBook(listData: List<BorrowedBook>) {
         val itemBookHomeAdapter = ItemBookHomeAdapter(listData)
         itemBookHomeAdapter.onItemClick = { selectedData ->
-            val intent = Intent(requireContext(), BookDetailsActivity::class.java)
-            startActivity(intent)
+            intentTo(BookDetailsActivity::class.java, selectedData.idBook, null)
         }
         binding.rvBorrowing.adapter = itemBookHomeAdapter
         binding.itemStatistics.tvNumberBorrow.text = listData.size.toString()
@@ -60,10 +58,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun populateHasReadBook(listData: List<BorrowedBook>) {
         val itemBookHomeAdapter = ItemBookHomeAdapter(listData)
         itemBookHomeAdapter.onItemClick = { selectedData ->
-            val intent = Intent(requireContext(), BookDetailsActivity::class.java)
-            startActivity(intent)
+            intentTo(BookDetailsActivity::class.java, selectedData.idBook, null)
         }
         binding.rvHasRead.adapter = itemBookHomeAdapter
         binding.itemStatistics.tvNumberRead.text = listData.size.toString()
+    }
+
+    private fun <T> intentTo(destination: Class<T>, idBook: Int?, user: User?) {
+        val intent = Intent(requireContext(), destination)
+        if (idBook != null) intent.putExtra(BookDetailsActivity.EXTRA_ID_BOOK, idBook)
+        if (user != null) intent.putExtra(ProfileActivity.EXTRA_USER, user)
+        startActivity(intent)
     }
 }

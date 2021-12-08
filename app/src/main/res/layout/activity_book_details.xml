@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingBottom="200dp"
     tools:context=".ui.dashboard.book.details.BookDetailsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,12 +13,12 @@
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:id="@+id/imageButton"
-            style="@style/Button.Transparent"
-            android:layout_width="50dp"
+            android:id="@+id/btn_detail_back"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:background="@null"
             android:contentDescription="@string/cd_illustration"
             android:padding="10dp"
             android:src="@drawable/ic_arrow_left_black"
@@ -25,16 +27,17 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_cover"
-            android:layout_width="130dp"
-            android:layout_height="190dp"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:src="@drawable/ic_read_book"
             app:cardCornerRadius="@dimen/radius_card"
+            app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton">
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_title">
 
             <ImageView
+                android:id="@+id/iv_detail_cover"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/cd_illustration"
@@ -49,23 +52,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/detail_buku"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
-            app:layout_constraintTop_toTopOf="@+id/imageButton" />
+            app:layout_constraintBottom_toBottomOf="@+id/btn_detail_back"
+            app:layout_constraintStart_toEndOf="@+id/btn_detail_back"
+            app:layout_constraintTop_toTopOf="@+id/btn_detail_back" />
 
         <TextView
             android:id="@+id/tv_detail_title"
-            style="@style/TextStyles.PoppinsRegular.Black"
+            style="@style/TextStyles.PoppinsMedium.Black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cv_cover"
-            app:layout_constraintTop_toTopOf="@+id/cv_cover"
+            app:layout_constraintTop_toBottomOf="@+id/btn_detail_back"
             tools:text="Love Yourself! Love Yourself! Love Yourself!" />
 
         <TextView
@@ -78,6 +82,7 @@
             tools:text="Dr Jiemi Ardian" />
 
         <TableLayout
+            android:id="@+id/tableLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -93,34 +98,35 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    style="@style/TextStyles.PoppinsRegular.Gray"
-                    android:padding="4dp"
-                    android:text="@string/category" />
+                    style="@style/TextStyles.PoppinsSmall"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/category"
+                    android:textStyle="bold" />
 
                 <TextView
-                    style="@style/TextStyles.PoppinsRegular.Gray"
-                    android:padding="4dp"
-                    android:text="@string/year" />
+                    style="@style/TextStyles.PoppinsSmall"
+                    android:text="@string/year"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp">
 
                 <TextView
                     android:id="@+id/tv_detail_category"
-                    style="@style/TextStyles.PoppinsRegular.Black"
+                    style="@style/TextStyles.PoppinsSmall.Black"
+                    android:layout_marginEnd="4dp"
                     android:ellipsize="end"
-                    android:maxEms="5"
+                    android:maxEms="7"
                     android:maxLines="1"
-                    android:padding="4dp"
                     tools:text="Self Improvement Improvement" />
 
                 <TextView
                     android:id="@+id/tv_detail_year"
-                    style="@style/TextStyles.PoppinsRegular.Black"
+                    style="@style/TextStyles.PoppinsSmall.Black"
                     android:maxLines="1"
-                    android:padding="4dp"
                     tools:text="2021" />
             </TableRow>
 
@@ -129,14 +135,15 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    style="@style/TextStyles.PoppinsRegular.Gray"
-                    android:padding="4dp"
-                    android:text="@string/isbn" />
+                    style="@style/TextStyles.PoppinsSmall"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/isbn"
+                    android:textStyle="bold" />
 
                 <TextView
-                    style="@style/TextStyles.PoppinsRegular.Gray"
-                    android:padding="4dp"
-                    android:text="@string/publisher" />
+                    style="@style/TextStyles.PoppinsSmall"
+                    android:text="@string/publisher"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -144,20 +151,20 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    style="@style/TextStyles.PoppinsRegular.Black"
+                    android:id="@+id/tv_detail_isbn"
+                    style="@style/TextStyles.PoppinsSmall.Black"
+                    android:layout_marginEnd="4dp"
                     android:ellipsize="end"
                     android:maxEms="5"
                     android:maxLines="1"
-                    android:padding="4dp"
                     tools:text="9786232055629" />
 
                 <TextView
                     android:id="@+id/tv_detail_publisher"
-                    style="@style/TextStyles.PoppinsRegular.Black"
+                    style="@style/TextStyles.PoppinsSmall.Black"
                     android:ellipsize="end"
                     android:maxEms="5"
                     android:maxLines="1"
-                    android:padding="4dp"
                     tools:text="Yrama Widya" />
             </TableRow>
         </TableLayout>
@@ -168,13 +175,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:text="@string/book_desc"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_cover" />
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
         <TextView
             android:id="@+id/tv_detail_desc"

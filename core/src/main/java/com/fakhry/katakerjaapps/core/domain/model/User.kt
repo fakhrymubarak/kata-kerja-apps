@@ -10,6 +10,7 @@ data class User(
     val idRole: Int,
     val name: String,
     val avatar: String,
+    val fullAddress: String,
     val bornDate: String,
     val phoneNumber: String,
     val memberSince: String,
