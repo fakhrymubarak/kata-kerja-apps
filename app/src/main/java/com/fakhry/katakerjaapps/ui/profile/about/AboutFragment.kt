@@ -11,8 +11,10 @@ import com.fakhry.katakerjaapps.R
 import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentAboutBinding
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@AndroidEntryPoint
 class AboutFragment : Fragment(R.layout.fragment_about) {
     private val binding by viewBinding(FragmentAboutBinding::bind)
 

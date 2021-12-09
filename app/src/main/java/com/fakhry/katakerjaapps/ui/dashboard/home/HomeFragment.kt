@@ -16,7 +16,9 @@ import com.fakhry.katakerjaapps.databinding.FragmentHomeBinding
 import com.fakhry.katakerjaapps.helper.Base64
 import com.fakhry.katakerjaapps.ui.dashboard.book.details.BookDetailsActivity
 import com.fakhry.katakerjaapps.ui.profile.ProfileActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private lateinit var homeViewModel: HomeViewModel
@@ -33,8 +35,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             binding.itemHeader.ivProfile.setOnClickListener {
                 intentTo(ProfileActivity::class.java, null, user)
             }
-
-
         })
 
         homeViewModel.getDummyBorrowedBooks().observe(viewLifecycleOwner, { listTransactionBook ->

@@ -2,9 +2,10 @@ package com.fakhry.katakerjaapps.core.data.source.local.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.fakhry.katakerjaapps.core.data.source.local.entities.BookEntity
 
 @Database(
-    entities = [],
+    entities = [BookEntity::class],
     version = 1,
     exportSchema = false
 )

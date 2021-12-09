@@ -8,8 +8,9 @@ import com.fakhry.katakerjaapps.R
 import com.fakhry.katakerjaapps.adapter.SectionsPagerAdapter
 import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentOnBoardingBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
     private val binding by viewBinding(FragmentOnBoardingBinding::bind)
 

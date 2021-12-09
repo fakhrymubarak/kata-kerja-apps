@@ -9,14 +9,16 @@ import com.fakhry.katakerjaapps.R
 import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentUnverifiedBinding
 import com.fakhry.katakerjaapps.ui.profile.ProfileActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UnverifiedFragment : Fragment(R.layout.fragment_unverified) {
     private val binding by viewBinding(FragmentUnverifiedBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply{
+        binding.apply {
             itemHeader.ivProfile.setOnClickListener {
                 startActivity(Intent(requireContext(), ProfileActivity::class.java))
             }

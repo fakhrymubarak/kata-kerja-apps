@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.fakhry.katakerjaapps.databinding.ActivityRegisterBinding
 import com.fakhry.katakerjaapps.ui.dashboard.MainActivity
 import com.fakhry.katakerjaapps.ui.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
 

@@ -9,7 +9,9 @@ import com.fakhry.katakerjaapps.adapter.SectionsPagerAdapter
 import com.fakhry.katakerjaapps.databinding.ActivityOnBoardingBinding
 import com.fakhry.katakerjaapps.ui.login.LoginActivity
 import com.fakhry.katakerjaapps.ui.register.RegisterActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnBoardingBinding
     private var obPosition = 0

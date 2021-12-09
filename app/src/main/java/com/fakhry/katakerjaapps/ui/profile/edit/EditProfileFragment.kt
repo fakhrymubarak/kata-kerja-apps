@@ -10,7 +10,9 @@ import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentEditProfileBinding
 import com.fakhry.katakerjaapps.helper.Base64
 import com.fakhry.katakerjaapps.ui.profile.ProfileFragmentArgs
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
     private val binding by viewBinding(FragmentEditProfileBinding::bind)
 

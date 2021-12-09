@@ -11,7 +11,9 @@ import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
 import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentWishlistBinding
 import com.fakhry.katakerjaapps.ui.dashboard.book.details.BookDetailsActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
     private val binding by viewBinding(FragmentWishlistBinding::bind)
     private lateinit var wishListViewModel: WishListViewModel
@@ -23,7 +25,6 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
         wishListViewModel.getDummyBorrowedBooks().observe(viewLifecycleOwner, { listBook ->
             populateWishlistBook(listBook)
         })
-
     }
 
     private fun populateWishlistBook(listData: List<BorrowedBook>) {

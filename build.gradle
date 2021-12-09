@@ -38,7 +38,7 @@ buildscript {
 
         //dagger
         dagger_version = '2.38.1'
-        hilt_version = '2.36'
+        hilt_version = '2.40.5'
         hilt_jetpack_version = '1.0.0-alpha03'
 
         //navigation component

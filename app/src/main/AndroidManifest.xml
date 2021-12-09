@@ -3,6 +3,7 @@
     package="com.fakhry.katakerjaapps">
 
     <application
+        android:name=".KataKerjaApps"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"

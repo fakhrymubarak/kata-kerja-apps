@@ -13,7 +13,9 @@ import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
 import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentBookBinding
 import com.fakhry.katakerjaapps.ui.dashboard.book.details.BookDetailsActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BookFragment : Fragment(R.layout.fragment_book) {
     private val binding by viewBinding(FragmentBookBinding::bind)
     private lateinit var bookViewModel: BookViewModel

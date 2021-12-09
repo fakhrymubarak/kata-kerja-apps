@@ -8,7 +8,9 @@ import com.fakhry.katakerjaapps.core.domain.model.Book
 import com.fakhry.katakerjaapps.databinding.ActivityBookDetailsBinding
 import com.fakhry.katakerjaapps.helper.Base64
 import com.fakhry.katakerjaapps.ui.dashboard.book.BookViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BookDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookDetailsBinding
     private lateinit var bookViewModel: BookViewModel
@@ -23,7 +25,6 @@ class BookDetailsActivity : AppCompatActivity() {
         bookViewModel.getDetailBooks(idBook).observe(this, {
             populateView(it)
         })
-
     }
 
     private fun populateView(book: Book) {
@@ -40,11 +41,9 @@ class BookDetailsActivity : AppCompatActivity() {
                 onBackPressed()
             }
         }
-
     }
 
     companion object {
         const val EXTRA_ID_BOOK = "extra_id_book"
     }
-
 }
