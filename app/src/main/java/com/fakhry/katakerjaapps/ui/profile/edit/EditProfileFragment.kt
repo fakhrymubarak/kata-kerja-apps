@@ -9,7 +9,7 @@ import com.fakhry.katakerjaapps.R
 import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentEditProfileBinding
 import com.fakhry.katakerjaapps.helper.Base64
-import com.fakhry.katakerjaapps.ui.profile.ProfileFragmentArgs
+import com.fakhry.katakerjaapps.ui.profile.profile.ProfileFragmentArgs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

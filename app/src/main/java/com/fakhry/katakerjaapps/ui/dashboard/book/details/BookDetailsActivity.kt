@@ -1,8 +1,8 @@
 package com.fakhry.katakerjaapps.ui.dashboard.book.details
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.fakhry.katakerjaapps.core.domain.model.Book
 import com.fakhry.katakerjaapps.databinding.ActivityBookDetailsBinding
@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BookDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookDetailsBinding
-    private lateinit var bookViewModel: BookViewModel
+    private val bookViewModel: BookViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +21,6 @@ class BookDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val idBook = intent.getIntExtra(EXTRA_ID_BOOK, 1000)
-        bookViewModel = ViewModelProvider(this)[BookViewModel::class.java]
         bookViewModel.getDetailBooks(idBook).observe(this, {
             populateView(it)
         })

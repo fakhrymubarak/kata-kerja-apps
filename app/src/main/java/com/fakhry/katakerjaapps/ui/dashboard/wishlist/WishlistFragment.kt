@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.fakhry.katakerjaapps.R
 import com.fakhry.katakerjaapps.adapter.ItemBookWishlistAdapter
 import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
@@ -16,12 +16,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
     private val binding by viewBinding(FragmentWishlistBinding::bind)
-    private lateinit var wishListViewModel: WishListViewModel
+    private val wishListViewModel: WishListViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        wishListViewModel = ViewModelProvider(this)[WishListViewModel::class.java]
         wishListViewModel.getDummyBorrowedBooks().observe(viewLifecycleOwner, { listBook ->
             populateWishlistBook(listBook)
         })

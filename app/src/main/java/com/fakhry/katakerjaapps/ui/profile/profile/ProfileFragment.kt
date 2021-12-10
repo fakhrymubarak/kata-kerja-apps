@@ -1,4 +1,4 @@
-package com.fakhry.katakerjaapps.ui.profile
+package com.fakhry.katakerjaapps.ui.profile.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -44,6 +44,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
             btnLogout.setOnClickListener {
                 startActivity(Intent(requireContext(), LoginActivity::class.java))
+                requireActivity().finishAffinity()
             }
         }
     }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fakhry.katakerjaapps.R
@@ -18,12 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BookFragment : Fragment(R.layout.fragment_book) {
     private val binding by viewBinding(FragmentBookBinding::bind)
-    private lateinit var bookViewModel: BookViewModel
+    private val bookViewModel: BookViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bookViewModel = ViewModelProvider(this)[BookViewModel::class.java]
-
         bookViewModel.getDummyBorrowedBooks().observe(this, { listBook ->
             populatePopularBook(listBook)
             populateNewestBook(listBook)
