@@ -14,7 +14,5 @@ data class User(
     val bornDate: String,
     val phoneNumber: String,
     val memberSince: String,
-    val staffSince: String?,
-    val createdDate: String,
-    val updatedDate: String,
+    val staffSince: String,
 ): Parcelable
