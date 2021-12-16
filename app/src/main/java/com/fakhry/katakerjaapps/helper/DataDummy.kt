@@ -19,9 +19,7 @@ object DataDummy {
             bornDate = "01/01/2021",
             phoneNumber = "081234567890",
             memberSince = "07/12/2021",
-            staffSince = null,
-            createdDate = "07/12/2021",
-            updatedDate = "07/12/2021",
+            staffSince = "07/12/2021",
         )
         return liveData
     }
