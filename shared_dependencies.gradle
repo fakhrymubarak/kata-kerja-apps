@@ -3,6 +3,9 @@ dependencies {
     implementation "androidx.core:core-ktx:1.7.0"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
 
+    // timber
+    implementation "com.jakewharton.timber:timber:4.7.1"
+
     // kotlin coroutines lifecycle scopes
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
