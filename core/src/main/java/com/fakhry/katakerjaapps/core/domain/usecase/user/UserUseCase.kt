@@ -6,9 +6,9 @@ import com.fakhry.katakerjaapps.core.domain.model.Register
 import com.fakhry.katakerjaapps.core.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
-interface UserUseCase {
-    fun getUserById(userId: Int): Flow<Resource<User>>
-    fun updateUserById(userId: Int): Flow<Resource<User>>
+interface  UserUseCase {
+    fun getUserById(authToken: String, userId: Int): Flow<Resource<User>>
+    fun updateUserById(authToken: String, userId: Int): Flow<Resource<User>>
     fun postLogin(email: String, password: String): Flow<Resource<Login>>
     fun postRegister(
         email: String,
@@ -17,4 +17,10 @@ interface UserUseCase {
         bornDate: String,
         phoneNumber: String,
     ): Flow<Resource<Register>>
+
+    fun saveAuthToken(authToken: String)
+    fun getAuthToken(): Flow<String>
+
+    fun saveUserId(userId: Int)
+    fun getUserId(): Flow<Int>
 }

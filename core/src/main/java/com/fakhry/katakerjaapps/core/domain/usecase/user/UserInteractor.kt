@@ -10,11 +10,11 @@ import javax.inject.Inject
 
 class UserInteractor @Inject constructor(private val mIUserRepository: IUserRepository) :
     UserUseCase {
-    override fun getUserById(userId: Int): Flow<Resource<User>> =
-        mIUserRepository.getUserById(userId)
+    override fun getUserById(authToken: String, userId: Int): Flow<Resource<User>> =
+        mIUserRepository.getUserById(authToken, userId)
 
-    override fun updateUserById(userId: Int): Flow<Resource<User>> =
-        mIUserRepository.updateUserById(userId)
+    override fun updateUserById(authToken: String, userId: Int): Flow<Resource<User>> =
+        mIUserRepository.updateUserById(authToken, userId)
 
     override fun postLogin(email: String, password: String): Flow<Resource<Login>> =
         mIUserRepository.postLogin(email, password)
@@ -27,5 +27,17 @@ class UserInteractor @Inject constructor(private val mIUserRepository: IUserRepo
         phoneNumber: String
     ): Flow<Resource<Register>> =
         postRegister(email, password, name, bornDate, phoneNumber)
+
+    override fun saveAuthToken(authToken: String) {
+        mIUserRepository.saveAuthToken(authToken)
+    }
+
+    override fun getAuthToken(): Flow<String> = mIUserRepository.getAuthToken()
+
+    override fun saveUserId(userId: Int) {
+        mIUserRepository.saveUserId(userId)
+    }
+
+    override fun getUserId(): Flow<Int> = mIUserRepository.getUserId()
 
 }
