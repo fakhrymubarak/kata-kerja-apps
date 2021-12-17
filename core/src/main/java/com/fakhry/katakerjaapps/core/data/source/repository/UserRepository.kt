@@ -1,6 +1,7 @@
 package com.fakhry.katakerjaapps.core.data.source.repository
 
 import com.fakhry.katakerjaapps.core.data.Resource
+import com.fakhry.katakerjaapps.core.data.source.local.LocalUserDataSource
 import com.fakhry.katakerjaapps.core.data.source.remote.RemoteUserDataSource
 import com.fakhry.katakerjaapps.core.data.source.remote.network.ApiResponse
 import com.fakhry.katakerjaapps.core.domain.model.Login
@@ -8,20 +9,25 @@ import com.fakhry.katakerjaapps.core.domain.model.Register
 import com.fakhry.katakerjaapps.core.domain.model.User
 import com.fakhry.katakerjaapps.core.domain.repository.IUserRepository
 import com.fakhry.katakerjaapps.core.helper.UserDataMapper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class UserRepository @Inject constructor(
     private val remoteUserDataSource: RemoteUserDataSource,
+    private val localUserDataSource: LocalUserDataSource,
 ) : IUserRepository {
-    override fun getUserById(userId: Int): Flow<Resource<User>> =
+    override fun getUserById(authToken: String, userId: Int): Flow<Resource<User>> =
         flow {
             emit(Resource.Loading())
-            when (val apiResponse = remoteUserDataSource.getUserById(userId).first()) {
+            when (val apiResponse = remoteUserDataSource.getUserById(authToken, userId).first()) {
                 is ApiResponse.Success -> {
                     val data = UserDataMapper.User.mapResponseToDomain(apiResponse.data)
                     emit(Resource.Success(data))
@@ -34,11 +40,11 @@ class UserRepository @Inject constructor(
             }
         }
 
-    override fun updateUserById(userId: Int): Flow<Resource<User>> =
+    override fun updateUserById(authToken: String, userId: Int): Flow<Resource<User>> =
         flow {
             emit(Resource.Loading())
             when (val apiResponse =
-                remoteUserDataSource.updateUserById(userId).first()) {
+                remoteUserDataSource.updateUserById(authToken, userId).first()) {
                 is ApiResponse.Success -> {
                     val data = UserDataMapper.User.mapResponseToDomain(apiResponse.data)
                     emit(Resource.Success(data))
@@ -97,4 +103,22 @@ class UserRepository @Inject constructor(
 
             }
         }
+
+    override fun saveAuthToken(authToken: String) {
+        CoroutineScope(Dispatchers.IO).launch { localUserDataSource.saveAuthToken(authToken) }
+    }
+
+    override fun getAuthToken(): Flow<String> =
+        flow {
+            emitAll(localUserDataSource.getAuthToken())
+        }
+
+    override fun getUserId(): Flow<Int> =
+        flow {
+            emitAll(localUserDataSource.getUserId())
+        }
+
+    override fun saveUserId(userId: Int) {
+        CoroutineScope(Dispatchers.IO).launch { localUserDataSource.saveUserId(userId) }
+    }
 }

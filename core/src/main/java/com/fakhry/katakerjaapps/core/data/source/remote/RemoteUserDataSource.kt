@@ -18,10 +18,10 @@ import javax.inject.Singleton
 
 @Singleton
 class RemoteUserDataSource @Inject constructor(private val userApiService: UserApiService) {
-    fun getUserById(userId: Int): Flow<ApiResponse<UserDetailsData>> =
+    fun getUserById(authToken: String, userId: Int): Flow<ApiResponse<UserDetailsData>> =
         flow {
             try {
-                val response = userApiService.getUserById(userId)
+                val response = userApiService.getUserById(authToken, userId)
                 if (response.success) {
                     emit(ApiResponse.Success(response.userDetailsData))
                 } else {
@@ -33,10 +33,10 @@ class RemoteUserDataSource @Inject constructor(private val userApiService: UserA
             }
         }.flowOn(Dispatchers.IO)
 
-    fun updateUserById(userId: Int): Flow<ApiResponse<UserUpdateData>> =
+    fun updateUserById(authToken: String, userId: Int): Flow<ApiResponse<UserUpdateData>> =
         flow {
             try {
-                val response = userApiService.updateUserById(userId)
+                val response = userApiService.updateUserById(authToken, userId)
                 if (response.success) {
                     emit(ApiResponse.Success(response.userUpdateData))
                 } else {
