@@ -82,6 +82,9 @@
     <string name="or">atau</string>
     <string name="log_in_with_google">Log In dengan Google</string>
     <string name="login_to_register">Belum punya akun? Sign Up</string>
+    <string name="error_empty_edit_text">Tidak boleh dikosongkan</string>
+    <string name="error_email_format">Email tidak sesuai format</string>
+    <string name="error_password_format">Password \u003C 6 karakter</string>
 
     <!--  REGISTER  -->
     <string name="register_title">Buat Akun Baru</string>
