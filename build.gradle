@@ -25,7 +25,7 @@ buildscript {
         swipeRefreshVersion = '1.1.0'
 
         //room
-        room_version = '2.3.0'
+        room_version = '2.4.0'
 
         //retrofit
         retrofit_version = '2.9.0'
@@ -42,6 +42,9 @@ buildscript {
 
         //navigation component
         nav_version = '2.4.0-beta02'
+
+        //data store
+        datastore_version = '1.0.0'
     }
 
     repositories {
