@@ -2,8 +2,8 @@ package com.fakhry.katakerjaapps.core.di
 
 import android.content.Context
 import androidx.room.Room
-import com.fakhry.katakerjaapps.core.data.source.local.room.KatakerjaDatabase
 import com.fakhry.katakerjaapps.core.data.source.local.room.KatakerjaDao
+import com.fakhry.katakerjaapps.core.data.source.local.room.KatakerjaDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,6 +31,6 @@ class DatabaseModule {
             .build()
 
     @Provides
-    fun provideLoonlyDao(database: KatakerjaDatabase): KatakerjaDao =
+    fun provideKatakerjaDao(database: KatakerjaDatabase): KatakerjaDao =
         database.katakerjaDao()
 }
