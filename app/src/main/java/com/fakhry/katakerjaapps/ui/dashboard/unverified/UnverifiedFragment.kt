@@ -19,9 +19,6 @@ class UnverifiedFragment : Fragment(R.layout.fragment_unverified) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            itemHeader.ivProfile.setOnClickListener {
-                startActivity(Intent(requireContext(), ProfileActivity::class.java))
-            }
             btnGoToKatakerja.setOnClickListener {
                 val gmmIntentUri = Uri.parse("geo:-5.168062,119.494937?z=10&q=Katakerja")
                 val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)

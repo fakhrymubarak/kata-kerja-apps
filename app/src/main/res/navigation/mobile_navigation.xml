@@ -9,10 +9,13 @@
         android:id="@+id/navigation_home"
         android:name="com.fakhry.katakerjaapps.ui.dashboard.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_navigation_unverified"
-            app:destination="@id/navigation_unverified" />
+            app:destination="@id/navigation_unverified"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/mobile_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -31,5 +34,9 @@
         android:id="@+id/navigation_unverified"
         android:name="com.fakhry.katakerjaapps.ui.dashboard.unverified.UnverifiedFragment"
         android:label="@string/title_unverified"
-        tools:layout="@layout/fragment_unverified" />
+        tools:layout="@layout/fragment_unverified">
+        <action
+            android:id="@+id/action_navigation_unverified_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

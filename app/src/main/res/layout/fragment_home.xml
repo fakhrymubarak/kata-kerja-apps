@@ -12,23 +12,13 @@
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/item_header"
-            layout="@layout/item_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <include
             android:id="@+id/item_statistics"
             layout="@layout/item_statistics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_header" />
-
+            app:layout_constraintTop_toTopOf="parent"/>
         <TextView
             android:id="@+id/tv_borrowed"
             style="@style/TextStyles.PoppinsLarge.Black"
