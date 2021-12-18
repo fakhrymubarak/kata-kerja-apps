@@ -1,8 +1,8 @@
 package com.fakhry.katakerjaapps.core.data.source.remote.network
 
-import com.fakhry.katakerjaapps.core.data.source.remote.response.login.LoginResponse
-import com.fakhry.katakerjaapps.core.data.source.remote.response.register.RegisterResponse
-import com.fakhry.katakerjaapps.core.data.source.remote.response.user.detail.UserDetailsResponse
+import com.fakhry.katakerjaapps.core.data.source.remote.response.user.login.LoginResponse
+import com.fakhry.katakerjaapps.core.data.source.remote.response.user.register.RegisterResponse
+import com.fakhry.katakerjaapps.core.data.source.remote.response.user.details.UserDetailsResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.update.UserUpdateResponse
 import retrofit2.http.*
 

@@ -1,4 +1,4 @@
-package com.fakhry.katakerjaapps.core.data.source.remote.response.user.detail
+package com.fakhry.katakerjaapps.core.data.source.remote.response.user.details
 
 import com.google.gson.annotations.SerializedName
 

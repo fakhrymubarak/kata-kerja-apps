@@ -2,9 +2,9 @@ package com.fakhry.katakerjaapps.core.data.source.remote
 
 import com.fakhry.katakerjaapps.core.data.source.remote.network.ApiResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.network.UserApiService
-import com.fakhry.katakerjaapps.core.data.source.remote.response.login.LoginData
-import com.fakhry.katakerjaapps.core.data.source.remote.response.register.RegisterData
-import com.fakhry.katakerjaapps.core.data.source.remote.response.user.detail.UserDetailsData
+import com.fakhry.katakerjaapps.core.data.source.remote.response.user.login.LoginData
+import com.fakhry.katakerjaapps.core.data.source.remote.response.user.register.RegisterData
+import com.fakhry.katakerjaapps.core.data.source.remote.response.user.details.UserDetailsData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.update.UserUpdateData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

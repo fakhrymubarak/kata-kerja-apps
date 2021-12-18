@@ -1,11 +1,11 @@
-package com.fakhry.katakerjaapps.core.data.source.remote.response.register
+package com.fakhry.katakerjaapps.core.data.source.remote.response.user.login
 
 import com.google.gson.annotations.SerializedName
 
-data class RegisterResponse(
+data class LoginResponse(
 
 	@field:SerializedName("data")
-	val registerData: RegisterData,
+	val loginData: LoginData,
 
 	@field:SerializedName("success")
 	val success: Boolean,

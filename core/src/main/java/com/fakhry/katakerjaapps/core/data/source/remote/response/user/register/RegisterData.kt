@@ -1,4 +1,4 @@
-package com.fakhry.katakerjaapps.core.data.source.remote.response.register
+package com.fakhry.katakerjaapps.core.data.source.remote.response.user.register
 
 import com.google.gson.annotations.SerializedName
 
