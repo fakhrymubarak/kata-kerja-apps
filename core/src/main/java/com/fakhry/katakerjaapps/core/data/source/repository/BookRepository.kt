@@ -22,6 +22,22 @@ import javax.inject.Singleton
 class BookRepository @Inject constructor(
     private val remoteBookDataSource: RemoteBookDataSource,
 ) : IBookRepository {
+    override fun getBorrowedBooksById(idUser: Int): Flow<Resource<List<BorrowedBook>>> =
+        flow {
+            emit(Resource.Loading())
+            when (val apiResponse = remoteBookDataSource.getBorrowedBooksById(idUser).first()) {
+                is ApiResponse.Success -> {
+                    val listBookDomain = mapListBorrowedBookToListBookDomain(apiResponse.data)
+                    emit(Resource.Success(listBookDomain))
+                }
+                is ApiResponse.Error -> {
+                    emit(Resource.Error(apiResponse.errorMessage))
+                }
+                is ApiResponse.Empty -> {}
+
+            }
+        }
+
     override fun getBookDetailsById(bookId: Int): Flow<Resource<Book>> =
         flow {
             emit(Resource.Loading())
@@ -38,13 +54,13 @@ class BookRepository @Inject constructor(
             }
         }
 
-    override fun getBorrowedBooksById(idUser: Int): Flow<Resource<List<BorrowedBook>>> =
+    override fun getSearchedBooks(query: String): Flow<Resource<List<Book>>> =
         flow {
             emit(Resource.Loading())
-            when (val apiResponse = remoteBookDataSource.getBorrowedBooksById(idUser).first()) {
+            when (val apiResponse = remoteBookDataSource.getSearchedBooks(query).first()) {
                 is ApiResponse.Success -> {
-                    val listBookDomain = mapListBorrowedBookToListBookDomain(apiResponse.data)
-                    emit(Resource.Success(listBookDomain))
+                    val data = BookDataMapper.Book.mapResponseToDomain(apiResponse.data)
+                    emit(Resource.Success(data))
                 }
                 is ApiResponse.Error -> {
                     emit(Resource.Error(apiResponse.errorMessage))
