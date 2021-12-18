@@ -9,9 +9,12 @@ import javax.inject.Inject
 
 class BookInteractor @Inject constructor(private val mBookRepository: BookRepository) :
     BookUseCase {
+    override fun getBorrowedBooksById(idUser: Int): Flow<Resource<List<BorrowedBook>>> =
+        mBookRepository.getBorrowedBooksById(idUser)
+
     override fun getBookDetailsById(bookId: Int): Flow<Resource<Book>> =
         mBookRepository.getBookDetailsById(bookId)
 
-    override fun getBorrowedBooksById(idUser: Int): Flow<Resource<List<BorrowedBook>>> =
-        mBookRepository.getBorrowedBooksById(idUser)
+    override fun getSearchedBooks(query: String): Flow<Resource<List<Book>>> =
+        mBookRepository.getSearchedBooks(query)
 }

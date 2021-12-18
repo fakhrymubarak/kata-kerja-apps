@@ -6,6 +6,7 @@ import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
 import kotlinx.coroutines.flow.Flow
 
 interface BookUseCase {
-    fun getBookDetailsById(bookId: Int): Flow<Resource<Book>>
     fun getBorrowedBooksById(idUser: Int): Flow<Resource<List<BorrowedBook>>>
+    fun getBookDetailsById(bookId: Int): Flow<Resource<Book>>
+    fun getSearchedBooks(query: String): Flow<Resource<List<Book>>>
 }
