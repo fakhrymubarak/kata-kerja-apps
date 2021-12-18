@@ -25,7 +25,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val user = ProfileFragmentArgs.fromBundle(bundle).extraUser
         val navController = findNavController()
         binding.apply {
-            ivAvatar.load(Base64.decode(user.avatar)) { transformations(CircleCropTransformation()) }
+            if (user.avatar == "") {
+                ivAvatar.load(R.drawable.ic_empty_avatar) { transformations(CircleCropTransformation()) }
+            } else {
+                ivAvatar.load(Base64.decode(user.avatar)) { transformations(CircleCropTransformation()) }
+            }
             tvProfileName.text = user.name
             tvProfileMail.text = user.email
             tvProfileJoinDate.text = getString(R.string.joined_since, user.memberSince)

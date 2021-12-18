@@ -1,22 +1,22 @@
-package com.fakhry.katakerjaapps.adapter
+package com.fakhry.katakerjaapps.adapter.book.wishlist
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.katakerjaapps.R
-import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
+import com.fakhry.katakerjaapps.core.domain.model.Book
 import com.fakhry.katakerjaapps.databinding.ItemBookWishlistBinding
 import com.fakhry.katakerjaapps.helper.Base64
 
-class ItemBookWishlistAdapter(private val dataSet: List<BorrowedBook>) :
+class ItemBookWishlistAdapter(private val dataSet: List<Book>) :
     RecyclerView.Adapter<ItemBookWishlistAdapter.ViewHolder>() {
-    var onItemClick: ((BorrowedBook) -> Unit)? = null
+    var onItemClick: ((Book) -> Unit)? = null
 
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemBookWishlistBinding.bind(view)
-        fun bind(data: BorrowedBook) {
+        fun bind(data: Book) {
             binding.apply {
                 ivCover.setImageBitmap(Base64.decode(data.cover))
                 tvTitle.text = data.title

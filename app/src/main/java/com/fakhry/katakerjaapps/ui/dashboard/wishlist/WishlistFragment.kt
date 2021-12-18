@@ -6,7 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.fakhry.katakerjaapps.R
-import com.fakhry.katakerjaapps.adapter.ItemBookWishlistAdapter
+import com.fakhry.katakerjaapps.adapter.book.wishlist.ItemBookWishlistAdapter
 import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
 import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentWishlistBinding
@@ -26,7 +26,7 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
     }
 
     private fun populateWishlistBook(listData: List<BorrowedBook>) {
-        val adapter = ItemBookWishlistAdapter(listData)
+        val adapter = ItemBookWishlistAdapter(listData.map { it.bookData })
         adapter.onItemClick = { selectedData ->
             intentTo(BookDetailsActivity::class.java, selectedData.idBook)
         }

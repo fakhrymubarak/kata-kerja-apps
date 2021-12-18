@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fakhry.katakerjaapps.R
-import com.fakhry.katakerjaapps.adapter.ItemBookCoverGridAdapter
-import com.fakhry.katakerjaapps.adapter.ItemBookCoverLinearAdapter
+import com.fakhry.katakerjaapps.adapter.book.cover.ItemBookCoverGridAdapter
+import com.fakhry.katakerjaapps.adapter.book.linear.ItemBookCoverLinearAdapter
 import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
 import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentBookBinding
@@ -30,7 +29,7 @@ class BookFragment : Fragment(R.layout.fragment_book) {
     }
 
     private fun populatePopularBook(listData: List<BorrowedBook>) {
-        val adapter = ItemBookCoverLinearAdapter(listData)
+        val adapter = ItemBookCoverLinearAdapter(listData.map { it.bookData })
         adapter.onItemClick = { selectedData ->
             intentTo(BookDetailsActivity::class.java, selectedData.idBook)
         }
@@ -38,7 +37,7 @@ class BookFragment : Fragment(R.layout.fragment_book) {
     }
 
     private fun populateNewestBook(listData: List<BorrowedBook>) {
-        val adapter = ItemBookCoverGridAdapter(listData)
+        val adapter = ItemBookCoverGridAdapter(listData.map { it.bookData })
         adapter.onItemClick = { selectedData ->
             intentTo(BookDetailsActivity::class.java, selectedData.idBook)
         }
