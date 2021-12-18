@@ -19,6 +19,9 @@ data class UserDetailsData(
 	@field:SerializedName("name")
 	val name: String,
 
+	@field:SerializedName("foto")
+	val avatar: String?,
+
 	@field:SerializedName("id_role")
 	val idRole: Int,
 
