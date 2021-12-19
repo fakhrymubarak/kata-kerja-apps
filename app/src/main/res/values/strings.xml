@@ -42,6 +42,9 @@
     <string name="publisher">Penerbit</string>
     <string name="book_desc">Deskripsi Buku</string>
 
+    <!-- WISHLIST -->
+    <string name="empty_wishlist">Kamu belum menambahkan buku \napapun ke wishlist.</string>
+
     <!--  PROFILE  -->
     <string name="joined_since">Bergabung sejak %1$s</string>
     <string name="edit_profile">Edit Profil</string>
