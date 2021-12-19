@@ -42,7 +42,7 @@ class ItemBookCoverGridAdapter : RecyclerView.Adapter<ItemBookCoverGridAdapter.V
                 try {
                     ivCover.load(Base64.decode(data.cover))
                 } catch (e: Exception) {
-                    ivCover.load(R.drawable.ic_img_cover_default)
+                    ivCover.load(R.drawable.img_cover_default)
                 }
             }
             itemView.setOnClickListener {

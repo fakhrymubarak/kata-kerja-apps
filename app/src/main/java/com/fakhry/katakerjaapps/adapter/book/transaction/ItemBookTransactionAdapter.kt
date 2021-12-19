@@ -3,31 +3,16 @@ package com.fakhry.katakerjaapps.adapter.book.transaction
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.fakhry.katakerjaapps.R
 import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
 import com.fakhry.katakerjaapps.databinding.ItemBookTransactionBinding
 import com.fakhry.katakerjaapps.helper.Base64
+import com.fakhry.katakerjaapps.helper.DateFormat
 
 class ItemBookTransactionAdapter(private val dataSet: List<BorrowedBook>) :
     RecyclerView.Adapter<ItemBookTransactionAdapter.ViewHolder>() {
     var onItemClick: ((BorrowedBook) -> Unit)? = null
-
-    inner class ViewHolder(private val binding: ItemBookTransactionBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: BorrowedBook) {
-            binding.apply {
-                ivCover.setImageBitmap(Base64.decode(data.bookData.cover))
-                tvTitle.text = data.bookData.title
-                tvAuthor.text = data.bookData.author
-                tvPublisher.text = data.bookData.publisher
-                tvYearReleased.text = data.bookData.releaseYear
-                tvDeadline.text = data.returnDate
-            }
-            itemView.setOnClickListener {
-                onItemClick?.invoke(dataSet[layoutPosition])
-            }
-        }
-    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
@@ -42,4 +27,43 @@ class ItemBookTransactionAdapter(private val dataSet: List<BorrowedBook>) :
 
     override fun getItemCount() = dataSet.size
 
+    inner class ViewHolder(private val binding: ItemBookTransactionBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(data: BorrowedBook) {
+            binding.apply {
+                try {
+                    ivCover.load(Base64.decode(data.bookData.cover))
+                } catch (e: Exception) {
+                    ivCover.load(R.drawable.img_cover_default)
+                }
+
+                tvTitle.text = data.bookData.title
+                tvAuthor.text = data.bookData.author
+                tvPublisher.text = data.bookData.publisher
+                tvYearReleased.text = data.bookData.releaseYear
+
+                when (data.borrowStatus) {
+                    1 -> {
+                        tvDeadline.text = tvDeadline.context.getString(
+                            R.string.turn_back_before,
+                            DateFormat.fullDateToFormalDate(data.returnDate)
+                        )
+                    }
+                    2 -> {
+                        tvDeadline.setTextColor(tvDeadline.context.getColor(R.color.success))
+                        tvDeadline.text = tvDeadline.context.getString(
+                            R.string.read_date,
+                            DateFormat.fullDateToFormalDate(data.returnDate)
+                        )
+                    }
+                    3 -> {
+                        tvDeadline.text = tvDeadline.context.getString(R.string.missing)
+                    }
+                }
+            }
+            itemView.setOnClickListener {
+                onItemClick?.invoke(dataSet[layoutPosition])
+            }
+        }
+    }
 }

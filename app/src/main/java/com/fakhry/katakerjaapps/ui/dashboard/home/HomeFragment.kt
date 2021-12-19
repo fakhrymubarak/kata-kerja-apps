@@ -24,9 +24,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getUserId().observe(this, { userId ->
-//            observeBookTransaction(userId)
+            observeBookTransaction(userId)
         })
-
     }
 
     private fun observeBookTransaction(userId: Int) {
@@ -36,43 +35,55 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
                         listTransRes.data?.let { listTransaction ->
-                            val listBorrowed = listTransaction.filter { it.borrowStatus == 1 }
-                            val listHasRead =
-                                listTransaction.filter { it.borrowStatus == 2 }
-                            populateBorrowedBook(listBorrowed)
-                            populateHasReadBook(listHasRead)
+                            if (listTransaction.isNotEmpty()) {
+                                val listBorrowed = listTransaction.filter { it.borrowStatus == 1 }
+                                val listHasRead = listTransaction.filter { it.borrowStatus == 2 }
+                                populateBorrowedBook(listBorrowed)
+                                populateHasReadBook(listHasRead)
+                            }
                         }
                     }
                     is Resource.Error -> {
                         Toast.makeText(
-                            requireContext(),
-                            listTransRes.message,
-                            Toast.LENGTH_SHORT
+                            requireContext(), listTransRes.message, Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
             }
-
         })
     }
 
     private fun populateBorrowedBook(listData: List<BorrowedBook>) {
-        val itemBookHomeAdapter = ItemBookTransactionAdapter(listData)
-        itemBookHomeAdapter.onItemClick = { selectedData ->
-            intentTo(BookDetailsActivity::class.java, selectedData.bookData.idBook)
+        if (listData.isEmpty()) {
+            binding.tvBorrowed.visibility = View.GONE
+            binding.rvBorrowed.visibility = View.GONE
+        } else {
+            binding.tvBorrowed.visibility = View.VISIBLE
+            binding.rvBorrowed.visibility = View.VISIBLE
+            val itemBookHomeAdapter = ItemBookTransactionAdapter(listData)
+            itemBookHomeAdapter.onItemClick = { selectedData ->
+                intentTo(BookDetailsActivity::class.java, selectedData.bookData.idBook)
+            }
+            binding.rvBorrowed.adapter = itemBookHomeAdapter
+            binding.itemStatistics.tvNumberBorrow.text = listData.size.toString()
         }
-        binding.rvBorrowing.adapter = itemBookHomeAdapter
-        binding.itemStatistics.tvNumberBorrow.text = listData.size.toString()
-
     }
 
+
     private fun populateHasReadBook(listData: List<BorrowedBook>) {
-        val itemBookHomeAdapter = ItemBookTransactionAdapter(listData)
-        itemBookHomeAdapter.onItemClick = { selectedData ->
-            intentTo(BookDetailsActivity::class.java, selectedData.bookData.idBook)
+        if (listData.isEmpty()) {
+            binding.tvHasRead.visibility = View.GONE
+            binding.rvHasRead.visibility = View.GONE
+        } else {
+            binding.tvHasRead.visibility = View.VISIBLE
+            binding.rvHasRead.visibility = View.VISIBLE
+            val itemBookHomeAdapter = ItemBookTransactionAdapter(listData)
+            itemBookHomeAdapter.onItemClick = { selectedData ->
+                intentTo(BookDetailsActivity::class.java, selectedData.bookData.idBook)
+            }
+            binding.rvHasRead.adapter = itemBookHomeAdapter
+            binding.itemStatistics.tvNumberRead.text = listData.size.toString()
         }
-        binding.rvHasRead.adapter = itemBookHomeAdapter
-        binding.itemStatistics.tvNumberRead.text = listData.size.toString()
     }
 
     private fun <T> intentTo(destination: Class<T>, idBook: Int?) {

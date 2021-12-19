@@ -25,6 +25,9 @@
     <string name="has_read">Telah Dibaca</string>
     <string name="borrowed">Buku Dipinjam</string>
     <string name="borrowing">Sedang Dipinjam</string>
+    <string name="missing">Hilang</string>
+    <string name="turn_back_before">DL: %1$s</string>
+    <string name="read_date">%1$s</string>
 
     <!--  BOOK  -->
     <string name="newest_book">Buku Terbaru</string>
