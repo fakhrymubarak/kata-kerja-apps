@@ -2,6 +2,8 @@ package com.fakhry.katakerjaapps.ui.dashboard.book
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import com.fakhry.katakerjaapps.core.data.Resource
 import com.fakhry.katakerjaapps.core.domain.model.Book
 import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
 import com.fakhry.katakerjaapps.core.domain.usecase.book.BookUseCase
@@ -13,4 +15,7 @@ import javax.inject.Inject
 class BookViewModel @Inject constructor(private val bookUseCase: BookUseCase) : ViewModel() {
     fun getDetailBooks(idBook: Int): LiveData<Book> = DataDummy.getBookDetails(idBook)
     fun getDummyBorrowedBooks(): LiveData<List<BorrowedBook>> = DataDummy.getBorrowedBooks()
+
+    fun searchBooks(query: String): LiveData<Resource<List<Book>>> =
+        bookUseCase.getSearchedBooks(query).asLiveData()
 }
