@@ -13,9 +13,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BookViewModel @Inject constructor(private val bookUseCase: BookUseCase) : ViewModel() {
-    fun getDetailBooks(idBook: Int): LiveData<Book> = DataDummy.getBookDetails(idBook)
     fun getDummyBorrowedBooks(): LiveData<List<BorrowedBook>> = DataDummy.getBorrowedBooks()
 
     fun searchBooks(query: String): LiveData<Resource<List<Book>>> =
         bookUseCase.getSearchedBooks(query).asLiveData()
+
+    fun getDetailBooks(idBook: Int): LiveData<Resource<Book>> =
+        bookUseCase.getBookDetailsById(idBook).asLiveData()
 }

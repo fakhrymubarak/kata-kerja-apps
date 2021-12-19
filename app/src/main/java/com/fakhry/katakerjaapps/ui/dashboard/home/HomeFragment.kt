@@ -69,7 +69,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-
     private fun populateHasReadBook(listData: List<BorrowedBook>) {
         if (listData.isEmpty()) {
             binding.tvHasRead.visibility = View.GONE
