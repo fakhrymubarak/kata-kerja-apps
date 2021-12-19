@@ -4,7 +4,6 @@ import com.fakhry.katakerjaapps.core.data.source.remote.response.book.details.Bo
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.search.SearchedBookData
 import com.fakhry.katakerjaapps.core.domain.model.Book as BookDomain
 
-
 object BookDataMapper {
     object Book {
         fun mapResponseToDomain(bookDetailsData: BookDetailsData): BookDomain =

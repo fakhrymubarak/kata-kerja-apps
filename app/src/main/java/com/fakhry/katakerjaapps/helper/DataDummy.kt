@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.fakhry.katakerjaapps.core.domain.model.Book
 import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
-import com.fakhry.katakerjaapps.core.domain.model.User
 
 object DataDummy {
     fun getBorrowedBooks(): LiveData<List<BorrowedBook>> {
@@ -13,6 +12,7 @@ object DataDummy {
         val listOfBook = ArrayList<BorrowedBook>()
         repeat(10) {
             val borrowedBook = BorrowedBook(
+                id = 31,
                 bookData = Book(
                     idBook = 271837,
                     title = "Si Putih",

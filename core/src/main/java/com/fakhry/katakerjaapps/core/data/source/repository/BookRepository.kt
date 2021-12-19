@@ -4,17 +4,15 @@ import com.fakhry.katakerjaapps.core.data.Resource
 import com.fakhry.katakerjaapps.core.data.source.remote.RemoteBookDataSource
 import com.fakhry.katakerjaapps.core.data.source.remote.network.ApiResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow.BorrowedBooksData
+import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.WishlistBooksData
 import com.fakhry.katakerjaapps.core.domain.model.Book
 import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
 import com.fakhry.katakerjaapps.core.domain.repository.IBookRepository
 import com.fakhry.katakerjaapps.core.helper.BookDataMapper
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,6 +20,7 @@ import javax.inject.Singleton
 class BookRepository @Inject constructor(
     private val remoteBookDataSource: RemoteBookDataSource,
 ) : IBookRepository {
+
     override fun getBorrowedBooksById(idUser: Int): Flow<Resource<List<BorrowedBook>>> =
         flow {
             emit(Resource.Loading())
@@ -70,23 +69,49 @@ class BookRepository @Inject constructor(
             }
         }
 
-    private fun mapListBorrowedBookToListBookDomain(listBorrowedBooksData: List<BorrowedBooksData>): List<BorrowedBook> {
+    override fun getWishBooks(idUser: Int): Flow<Resource<List<Book>>> =
+        flow {
+            emit(Resource.Loading())
+            when (val apiResponse = remoteBookDataSource.getWishBooksById(idUser).first()) {
+                is ApiResponse.Success -> {
+                    val listBookDomain = mapListWishBookToListBookDomain(apiResponse.data)
+                    emit(Resource.Success(listBookDomain))
+                }
+                is ApiResponse.Error -> {
+                    emit(Resource.Error(apiResponse.errorMessage))
+                }
+                is ApiResponse.Empty -> {}
+            }
+        }
+
+    private suspend fun mapListBorrowedBookToListBookDomain(listBorrowedBooksData: List<BorrowedBooksData>): List<BorrowedBook> {
         val listBookDetailsData = ArrayList<BorrowedBook>()
         listBorrowedBooksData.map { borrowedBookData ->
-            CoroutineScope(Dispatchers.IO).launch {
-                getBookDetailsById(borrowedBookData.bookId).collectLatest { bookResource ->
-                    if (bookResource is Resource.Success) {
-                        bookResource.data?.let {
-                            listBookDetailsData.add(
-                                BorrowedBook(
-                                    bookData = it,
-                                    borrowDate = borrowedBookData.borrowDate,
-                                    returnDate = borrowedBookData.returnDate,
-                                    borrowStatus = borrowedBookData.status,
-                                )
+            getBookDetailsById(borrowedBookData.bookId).collectLatest { bookResource ->
+                if (bookResource is Resource.Success) {
+                    bookResource.data?.let {
+                        listBookDetailsData.add(
+                            BorrowedBook(
+                                id = borrowedBookData.id,
+                                bookData = it,
+                                borrowDate = borrowedBookData.borrowDate,
+                                returnDate = borrowedBookData.returnDate,
+                                borrowStatus = borrowedBookData.status,
                             )
-                        }
+                        )
                     }
+                }
+            }
+        }
+        return listBookDetailsData
+    }
+
+    private suspend fun mapListWishBookToListBookDomain(listWishBook: List<WishlistBooksData>): List<Book> {
+        val listBookDetailsData = ArrayList<Book>()
+        listWishBook.map { wishBooks ->
+            getBookDetailsById(wishBooks.bookId).collectLatest { bookResource ->
+                if (bookResource is Resource.Success) {
+                    bookResource.data?.let { book -> listBookDetailsData.add(book) }
                 }
             }
         }
