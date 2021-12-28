@@ -170,19 +170,48 @@
             </TableRow>
         </TableLayout>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_add_wishlist"
+            style="@style/Button.Transparent.Wishlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:drawablePadding="8dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/title_wishlist"
+            app:layout_constraintEnd_toStartOf="@id/btn_share"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_share"
+            style="@style/Button.Transparent.Share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:drawablePadding="8dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/share"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_add_wishlist"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_add_wishlist"
+            app:layout_constraintTop_toTopOf="@+id/btn_add_wishlist" />
+
         <TextView
             android:id="@+id/tv_desc"
             style="@style/TextStyles.PoppinsLarge.Black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="@string/book_desc"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_wishlist" />
 
         <TextView
             android:id="@+id/tv_detail_desc"

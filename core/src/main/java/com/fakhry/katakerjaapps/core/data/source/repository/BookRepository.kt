@@ -84,6 +84,20 @@ class BookRepository @Inject constructor(
             }
         }
 
+    override fun insertWishBooks(authToken:String, idUser: Int, idBook: Int): Flow<Resource<Nothing>> =
+        flow {
+            emit(Resource.Loading())
+            when (val apiResponse = remoteBookDataSource.insertWishBook(authToken, idUser, idBook).first()) {
+                is ApiResponse.Success -> {
+                    emit(Resource.Error("Success insert data."))
+                }
+                is ApiResponse.Error -> {
+                    emit(Resource.Error(apiResponse.errorMessage))
+                }
+                is ApiResponse.Empty -> {}
+            }
+        }
+
     private suspend fun mapListBorrowedBookToListBookDomain(listBorrowedBooksData: List<BorrowedBooksData>): List<BorrowedBook> {
         val listBookDetailsData = ArrayList<BorrowedBook>()
         listBorrowedBooksData.map { borrowedBookData ->

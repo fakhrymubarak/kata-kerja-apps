@@ -20,4 +20,9 @@ class BookInteractor @Inject constructor(private val mBookRepository: BookReposi
 
     override fun getWishBooks(idUser: Int): Flow<Resource<List<Book>>> =
         mBookRepository.getWishBooks(idUser)
+
+    override fun insertWishBooks(
+        authToken: String, idUser: Int, idBook: Int
+    ): Flow<Resource<Nothing>> =
+        mBookRepository.insertWishBooks(authToken, idUser, idBook)
 }

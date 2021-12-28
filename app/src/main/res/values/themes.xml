@@ -90,6 +90,16 @@
         <item name="android:textColor">@color/salmon</item>
     </style>
 
+    <style name="Button.Transparent.Wishlist">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:drawableStart">@drawable/ic_add_dark</item>
+    </style>
+
+    <style name="Button.Transparent.Share">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:drawableStart">@drawable/ic_share_dark</item>
+    </style>
+
     <style name="Button.Primary">
         <item name="android:background">@drawable/shape_rec_fill_blue</item>
         <item name="android:textColor">@color/white</item>
@@ -105,7 +115,6 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textAlignment">textStart</item>
     </style>
-
 
     <!--TEXT INPUT-->
     <style name="TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">

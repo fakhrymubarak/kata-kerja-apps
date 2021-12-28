@@ -2,7 +2,7 @@ package com.fakhry.katakerjaapps.core.data.source.remote.response.book.search
 
 import com.google.gson.annotations.SerializedName
 
-data class SearchedBooksResponse(
+data class ListBooksResponse(
 
     @field:SerializedName("data")
 	val pagingData: PagingData,
