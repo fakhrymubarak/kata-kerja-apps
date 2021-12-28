@@ -3,7 +3,7 @@ package com.fakhry.katakerjaapps.core.data.source.remote.network
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow.BorrowedBooksResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.details.BookDetailsResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.search.ListBooksResponse
-import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.WishlistBooksResponse
+import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.show.WishlistBooksResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.store.StoreWishlistResponse
 import retrofit2.http.*
 

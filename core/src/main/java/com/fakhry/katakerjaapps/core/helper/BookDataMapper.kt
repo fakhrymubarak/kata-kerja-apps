@@ -3,6 +3,7 @@ package com.fakhry.katakerjaapps.core.helper
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow.BorrowedBooksData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.details.BookDetailsData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.search.SearchedBookData
+import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.show.WishlistBookData
 import com.fakhry.katakerjaapps.core.domain.model.Book as BookDomain
 
 object BookDataMapper {
@@ -21,22 +22,6 @@ object BookDataMapper {
                 category = bookDetailsData.kategori,
             )
 
-        fun mapResponseToDomain(listSearchedBookData: List<SearchedBookData>): List<BookDomain> =
-            listSearchedBookData.map { bookData ->
-                BookDomain(
-                    idBook = bookData.id,
-                    isbn = bookData.isbn,
-                    title = bookData.judul,
-                    description = bookData.deskripsi,
-                    author = bookData.author,
-                    publisher = bookData.penerbit,
-                    releaseYear = bookData.tahunTerbit.toString(),
-                    stock = bookData.stock,
-                    cover = bookData.fotoBuku ?: "",
-                    category = bookData.kategori,
-                )
-            }
-
         fun mapResponseToDomain(borrowedBooksData: BorrowedBooksData): BookDomain =
             BookDomain(
                 idBook = borrowedBooksData.id,
@@ -50,5 +35,35 @@ object BookDataMapper {
                 cover = borrowedBooksData.fotoBuku,
                 category = borrowedBooksData.kategori,
             )
+
+
+        fun mapResponseToDomain(searchedBookData: SearchedBookData): BookDomain =
+            BookDomain(
+                idBook = searchedBookData.id,
+                isbn = searchedBookData.isbn,
+                title = searchedBookData.judul,
+                description = searchedBookData.deskripsi,
+                author = searchedBookData.author,
+                publisher = searchedBookData.penerbit,
+                releaseYear = searchedBookData.tahunTerbit.toString(),
+                stock = searchedBookData.stock,
+                cover = searchedBookData.fotoBuku ?: "",
+                category = searchedBookData.kategori,
+            )
+
+        fun mapResponseToDomain(wishlistBook: WishlistBookData): BookDomain =
+            BookDomain(
+                idBook = wishlistBook.id,
+                isbn = wishlistBook.isbn,
+                title = wishlistBook.judul,
+                description = wishlistBook.deskripsi,
+                author = wishlistBook.author,
+                publisher = wishlistBook.penerbit,
+                releaseYear = wishlistBook.tahunTerbit.toString(),
+                stock = wishlistBook.stock,
+                cover = wishlistBook.fotoBuku,
+                category = wishlistBook.kategori,
+            )
+
     }
 }

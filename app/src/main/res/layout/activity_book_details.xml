@@ -178,6 +178,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:drawablePadding="8dp"
+            android:enabled="false"
             android:paddingHorizontal="16dp"
             android:text="@string/title_wishlist"
             app:layout_constraintEnd_toStartOf="@id/btn_share"

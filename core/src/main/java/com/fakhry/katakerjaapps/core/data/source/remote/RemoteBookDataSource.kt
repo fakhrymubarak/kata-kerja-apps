@@ -2,11 +2,10 @@ package com.fakhry.katakerjaapps.core.data.source.remote
 
 import com.fakhry.katakerjaapps.core.data.source.remote.network.ApiResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.network.BookApiService
-import com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow.BorrowedBooksData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow.DataResponseItem
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.details.BookDetailsData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.search.SearchedBookData
-import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.WishlistBooksData
+import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.show.ListWishlistBooksData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.store.StoreWishlistData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -63,7 +62,7 @@ class RemoteBookDataSource @Inject constructor(private val bookApiService: BookA
             }
         }.flowOn(Dispatchers.IO)
 
-    fun getBooksByCat(category : String): Flow<ApiResponse<List<SearchedBookData>>> =
+    fun getBooksByCat(category: String): Flow<ApiResponse<List<SearchedBookData>>> =
         flow {
             try {
                 val response = bookApiService.getBooksByCat(category)
@@ -78,12 +77,12 @@ class RemoteBookDataSource @Inject constructor(private val bookApiService: BookA
             }
         }.flowOn(Dispatchers.IO)
 
-    fun getWishBooksById(userId: Int): Flow<ApiResponse<List<WishlistBooksData>>> =
+    fun getWishBooksById(userId: Int): Flow<ApiResponse<List<ListWishlistBooksData>>> =
         flow {
             try {
                 val response = bookApiService.getWishBooksById(userId)
                 if (response.success) {
-                    emit(ApiResponse.Success(response.data))
+                    emit(ApiResponse.Success(response.listWishlistBooksData))
                 } else {
                     emit(ApiResponse.Error(response.message))
                 }
@@ -93,7 +92,11 @@ class RemoteBookDataSource @Inject constructor(private val bookApiService: BookA
             }
         }.flowOn(Dispatchers.IO)
 
-    fun insertWishBook(authToken: String, userId: Int, idBook: Int): Flow<ApiResponse<StoreWishlistData>> =
+    fun insertWishBook(
+        authToken: String,
+        userId: Int,
+        idBook: Int
+    ): Flow<ApiResponse<StoreWishlistData>> =
         flow {
             try {
                 val response = bookApiService.insertWishlist(authToken, userId, idBook)
