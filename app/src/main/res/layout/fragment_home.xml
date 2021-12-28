@@ -83,5 +83,32 @@
             tools:itemCount="2"
             tools:listitem="@layout/item_book_transaction"
             tools:visibility="visible" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/anim_empty_borrow"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="50dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_statistics"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="emptydata.json"
+            app:lottie_loop="true" />
+
+        <TextView
+            android:id="@+id/tvEmptyBorrow"
+            style="@style/TextStyles.PoppinsRegular.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_borrows"
+            android:textAlignment="center"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/anim_empty_borrow"
+            app:layout_constraintStart_toStartOf="@+id/anim_empty_borrow"
+            app:layout_constraintTop_toBottomOf="@+id/anim_empty_borrow" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -10,14 +10,16 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv_populars"
+            android:id="@+id/tvCatOne"
             style="@style/TextStyles.PoppinsLarge.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/popular_books"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_populars"
@@ -30,20 +32,22 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_populars"
+            app:layout_constraintTop_toBottomOf="@+id/tvCatOne"
             tools:itemCount="4"
             tools:listitem="@layout/item_book_cover_linear" />
 
         <TextView
-            android:id="@+id/tv_newest"
+            android:id="@+id/tvCatTwo"
             style="@style/TextStyles.PoppinsLarge.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/newest_book"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_populars" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_populars"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_newest"
@@ -58,7 +62,7 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_newest"
+            app:layout_constraintTop_toBottomOf="@+id/tvCatTwo"
             app:spanCount="3"
             tools:itemCount="10"
             tools:listitem="@layout/item_book_cover_grid" />

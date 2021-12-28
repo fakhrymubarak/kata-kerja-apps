@@ -40,6 +40,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                                 val listHasRead = listTransaction.filter { it.borrowStatus == 2 }
                                 populateBorrowedBook(listBorrowed)
                                 populateHasReadBook(listHasRead)
+                                binding.animEmptyBorrow.visibility = View.GONE
+                                binding.tvEmptyBorrow.visibility = View.GONE
+                            } else {
+                                binding.animEmptyBorrow.visibility = View.VISIBLE
+                                binding.tvEmptyBorrow.visibility = View.VISIBLE
+                                binding.itemStatistics.tvNumberRead.text = "0"
+                                binding.itemStatistics.tvNumberBorrow.text = "0"
                             }
                         }
                     }
@@ -57,9 +64,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         if (listData.isEmpty()) {
             binding.tvBorrowed.visibility = View.GONE
             binding.rvBorrowed.visibility = View.GONE
+            binding.itemStatistics.tvNumberBorrow.text = "0"
         } else {
             binding.tvBorrowed.visibility = View.VISIBLE
             binding.rvBorrowed.visibility = View.VISIBLE
+
             val itemBookHomeAdapter = ItemBookTransactionAdapter(listData)
             itemBookHomeAdapter.onItemClick = { selectedData ->
                 intentTo(BookDetailsActivity::class.java, selectedData.bookData.idBook)
@@ -73,6 +82,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         if (listData.isEmpty()) {
             binding.tvHasRead.visibility = View.GONE
             binding.rvHasRead.visibility = View.GONE
+            binding.itemStatistics.tvNumberRead.text = "0"
         } else {
             binding.tvHasRead.visibility = View.VISIBLE
             binding.rvHasRead.visibility = View.VISIBLE

@@ -38,48 +38,6 @@ class BookFragment : Fragment(R.layout.fragment_book) {
 
     }
 
-    private fun setCategoryOne(category: String) {
-        binding.itemExplore.tvPopulars.text = category
-        bookViewModel.getBooksByCat(category).observe(viewLifecycleOwner, { listBookResource ->
-            when (listBookResource) {
-                is Resource.Loading -> {}
-                is Resource.Success -> {
-                    listBookResource.data?.let { listBook ->
-                        if (listBook.isNotEmpty()) {
-                            populateBookCategoryOne(listBook)
-                        }
-                    }
-                }
-                is Resource.Error -> {
-                    Toast.makeText(
-                        requireContext(), listBookResource.message, Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        })
-    }
-
-    private fun setCategoryTwo(category: String) {
-        binding.itemExplore.tvNewest.text = category
-        bookViewModel.getBooksByCat(category).observe(viewLifecycleOwner, { listBookResource ->
-            when (listBookResource) {
-                is Resource.Loading -> {}
-                is Resource.Success -> {
-                    listBookResource.data?.let { listBook ->
-                        if (listBook.isNotEmpty()) {
-                            populateBookCategoryTwo(listBook)
-                        }
-                    }
-                }
-                is Resource.Error -> {
-                    Toast.makeText(
-                        requireContext(), listBookResource.message, Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        })
-    }
-
     private fun setItemLayout() {
         if (isSearchActive) {
             binding.itemSearchList.root.visibility = View.VISIBLE
@@ -88,7 +46,6 @@ class BookFragment : Fragment(R.layout.fragment_book) {
             binding.itemSearchList.root.visibility = View.INVISIBLE
             binding.itemExplore.root.visibility = View.VISIBLE
         }
-
     }
 
     private fun setSearchView() {
@@ -103,6 +60,50 @@ class BookFragment : Fragment(R.layout.fragment_book) {
 
             override fun onQueryTextChange(newText: String): Boolean {
                 return false
+            }
+        })
+    }
+
+    private fun setCategoryOne(category: String) {
+        binding.itemExplore.tvCatOne.text = category
+        bookViewModel.getBooksByCat(category).observe(viewLifecycleOwner, { listBookResource ->
+            when (listBookResource) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    listBookResource.data?.let { listBook ->
+                        if (listBook.isNotEmpty()) {
+                            populateBookCategoryOne(listBook)
+                            binding.itemExplore.tvCatOne.visibility = View.VISIBLE
+                        }
+                    }
+                }
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireContext(), listBookResource.message, Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
+    }
+
+    private fun setCategoryTwo(category: String) {
+        binding.itemExplore.tvCatTwo.text = category
+        bookViewModel.getBooksByCat(category).observe(viewLifecycleOwner, { listBookResource ->
+            when (listBookResource) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    listBookResource.data?.let { listBook ->
+                        if (listBook.isNotEmpty()) {
+                            populateBookCategoryTwo(listBook)
+                            binding.itemExplore.tvCatTwo.visibility = View.VISIBLE
+                        }
+                    }
+                }
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireContext(), listBookResource.message, Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         })
     }
@@ -131,7 +132,9 @@ class BookFragment : Fragment(R.layout.fragment_book) {
         searchMovieAdapter.setData(listBook)
         binding.itemSearchList.rvSearch.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.itemSearchList.rvSearch.adapter = searchMovieAdapter
-
+        searchMovieAdapter.onItemClick = { selectedData ->
+            intentTo(BookDetailsActivity::class.java, selectedData.idBook)
+        }
     }
 
     private fun populateBookCategoryOne(listData: List<Book>) {

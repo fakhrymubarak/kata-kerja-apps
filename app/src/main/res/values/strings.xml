@@ -41,6 +41,8 @@
     <string name="isbn">ISBN</string>
     <string name="publisher">Penerbit</string>
     <string name="book_desc">Deskripsi Buku</string>
+    <string name="empty_borrows">Kamu belum pernah meminjam buku.</string>
+
 
     <!-- WISHLIST -->
     <string name="empty_wishlist">Kamu belum menambahkan buku \napapun ke wishlist.</string>

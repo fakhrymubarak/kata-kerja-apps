@@ -50,7 +50,7 @@ class ItemBookTransactionAdapter(private val dataSet: List<BorrowedBook>) :
                         )
                     }
                     2 -> {
-                        tvDeadline.setTextColor(tvDeadline.context.getColor(R.color.success))
+                        tvDeadline.setTextColor(tvDeadline.context.getColor(R.color.black))
                         tvDeadline.text = tvDeadline.context.getString(
                             R.string.read_date,
                             DateFormat.fullDateToFormalDate(data.returnDate)
