@@ -23,4 +23,5 @@ interface IUserRepository {
 
     fun saveUserId(userId: Int)
     fun getUserId(): Flow<Int>
+    fun clearUserDataStore()
 }

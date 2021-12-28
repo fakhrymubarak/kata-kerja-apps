@@ -17,4 +17,8 @@ class LocalUserDataSource @Inject constructor(private val userDataStoreManager: 
     suspend fun saveUserId(userId: Int) {
         userDataStoreManager.saveUserId(userId)
     }
+
+    suspend fun clearUserDataStore() {
+        userDataStoreManager.clearUserDataStore()
+    }
 }

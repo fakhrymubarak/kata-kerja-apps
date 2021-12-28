@@ -121,4 +121,8 @@ class UserRepository @Inject constructor(
     override fun saveUserId(userId: Int) {
         CoroutineScope(Dispatchers.IO).launch { localUserDataSource.saveUserId(userId) }
     }
+
+    override fun clearUserDataStore() {
+        CoroutineScope(Dispatchers.IO).launch { localUserDataSource.clearUserDataStore() }
+    }
 }

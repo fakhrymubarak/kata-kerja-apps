@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -12,11 +13,13 @@ import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentProfileBinding
 import com.fakhry.katakerjaapps.helper.Base64
 import com.fakhry.katakerjaapps.ui.login.LoginActivity
+import com.fakhry.katakerjaapps.ui.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding by viewBinding(FragmentProfileBinding::bind)
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,6 +50,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 navController.navigate(R.id.action_nav_profile_to_nav_about)
             }
             btnLogout.setOnClickListener {
+                viewModel.logout()
                 startActivity(Intent(requireContext(), LoginActivity::class.java))
                 requireActivity().finishAffinity()
             }

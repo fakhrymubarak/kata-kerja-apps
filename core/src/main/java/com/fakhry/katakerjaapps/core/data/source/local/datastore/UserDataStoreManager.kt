@@ -40,6 +40,11 @@ class UserDataStoreManager @Inject constructor(@ApplicationContext appContext: C
         }
     }
 
+    suspend fun clearUserDataStore() =
+        userDataStore.edit { allPreference ->
+            allPreference.clear()
+        }
+
     companion object {
         val AUTH_TOKEN = stringPreferencesKey("auth_token")
         val USER_ID = intPreferencesKey("user_id")

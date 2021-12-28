@@ -40,4 +40,8 @@ class UserInteractor @Inject constructor(private val mIUserRepository: IUserRepo
 
     override fun getUserId(): Flow<Int> = mIUserRepository.getUserId()
 
+    override fun clearUserDataStore() {
+        mIUserRepository.clearUserDataStore()
+    }
+
 }

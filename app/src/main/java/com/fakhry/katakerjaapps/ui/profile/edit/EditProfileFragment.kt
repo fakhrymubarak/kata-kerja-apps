@@ -35,9 +35,14 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
         var isAvatarAdded: Boolean
         binding.apply {
             isAvatarAdded = if (avatar != null) {
-                ivEditAvatar.load(Base64.decode(avatar)) { transformations(CircleCropTransformation()) }
-                btnUpdateAvatar.setImageResource(R.drawable.ic_delete)
-                true
+                try {
+                    ivEditAvatar.load(Base64.decode(avatar)) { transformations(CircleCropTransformation()) }
+                    btnUpdateAvatar.setImageResource(R.drawable.ic_delete)
+                    true
+                } catch (e: Exception) {
+                    ivEditAvatar.load(R.drawable.ic_empty_avatar)
+                    false
+                }
             } else {
                 ivEditAvatar.load(R.drawable.ic_empty_avatar)
                 btnUpdateAvatar.setImageResource(R.drawable.ic_add)
