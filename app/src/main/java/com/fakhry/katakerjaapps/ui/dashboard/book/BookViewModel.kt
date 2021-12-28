@@ -18,6 +18,9 @@ class BookViewModel @Inject constructor(private val bookUseCase: BookUseCase) : 
     fun searchBooks(query: String): LiveData<Resource<List<Book>>> =
         bookUseCase.getSearchedBooks(query).asLiveData()
 
+    fun getBooksByCat(category: String): LiveData<Resource<List<Book>>> =
+        bookUseCase.getBooksByCat(category).asLiveData()
+
     fun getDetailBooks(idBook: Int): LiveData<Resource<Book>> =
         bookUseCase.getBookDetailsById(idBook).asLiveData()
 }

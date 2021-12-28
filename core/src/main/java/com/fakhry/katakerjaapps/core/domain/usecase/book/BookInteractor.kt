@@ -18,6 +18,9 @@ class BookInteractor @Inject constructor(private val mBookRepository: BookReposi
     override fun getSearchedBooks(query: String): Flow<Resource<List<Book>>> =
         mBookRepository.getSearchedBooks(query)
 
+    override fun getBooksByCat(category: String): Flow<Resource<List<Book>>> =
+        mBookRepository.getBooksByCat(category)
+
     override fun getWishBooks(idUser: Int): Flow<Resource<List<Book>>> =
         mBookRepository.getWishBooks(idUser)
 

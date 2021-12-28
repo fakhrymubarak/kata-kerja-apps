@@ -9,6 +9,7 @@ interface BookUseCase {
     fun getBorrowedBooksById(idUser: Int): Flow<Resource<List<BorrowedBook>>>
     fun getBookDetailsById(bookId: Int): Flow<Resource<Book>>
     fun getSearchedBooks(query: String): Flow<Resource<List<Book>>>
+    fun getBooksByCat(category: String): Flow<Resource<List<Book>>>
     fun getWishBooks(idUser: Int): Flow<Resource<List<Book>>>
     fun insertWishBooks(authToken: String, idUser: Int, idBook: Int): Flow<Resource<Nothing>>
 }

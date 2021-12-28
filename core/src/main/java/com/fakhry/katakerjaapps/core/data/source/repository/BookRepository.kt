@@ -69,6 +69,22 @@ class BookRepository @Inject constructor(
             }
         }
 
+    override fun getBooksByCat(category: String): Flow<Resource<List<Book>>> =
+        flow {
+            emit(Resource.Loading())
+            when (val apiResponse = remoteBookDataSource.getBooksByCat(category).first()) {
+                is ApiResponse.Success -> {
+                    val data = BookDataMapper.Book.mapResponseToDomain(apiResponse.data)
+                    emit(Resource.Success(data))
+                }
+                is ApiResponse.Error -> {
+                    emit(Resource.Error(apiResponse.errorMessage))
+                }
+                is ApiResponse.Empty -> {}
+
+            }
+        }
+
     override fun getWishBooks(idUser: Int): Flow<Resource<List<Book>>> =
         flow {
             emit(Resource.Loading())
@@ -84,10 +100,15 @@ class BookRepository @Inject constructor(
             }
         }
 
-    override fun insertWishBooks(authToken:String, idUser: Int, idBook: Int): Flow<Resource<Nothing>> =
+    override fun insertWishBooks(
+        authToken: String,
+        idUser: Int,
+        idBook: Int
+    ): Flow<Resource<Nothing>> =
         flow {
             emit(Resource.Loading())
-            when (val apiResponse = remoteBookDataSource.insertWishBook(authToken, idUser, idBook).first()) {
+            when (val apiResponse =
+                remoteBookDataSource.insertWishBook(authToken, idUser, idBook).first()) {
                 is ApiResponse.Success -> {
                     emit(Resource.Error("Success insert data."))
                 }

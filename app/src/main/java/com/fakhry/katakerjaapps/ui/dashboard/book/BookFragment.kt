@@ -13,7 +13,6 @@ import com.fakhry.katakerjaapps.adapter.book.cover.ItemBookCoverGridAdapter
 import com.fakhry.katakerjaapps.adapter.book.linear.ItemBookCoverLinearAdapter
 import com.fakhry.katakerjaapps.core.data.Resource
 import com.fakhry.katakerjaapps.core.domain.model.Book
-import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
 import com.fakhry.katakerjaapps.core.utils.viewBinding
 import com.fakhry.katakerjaapps.databinding.FragmentBookBinding
 import com.fakhry.katakerjaapps.ui.dashboard.book.details.BookDetailsActivity
@@ -32,9 +31,52 @@ class BookFragment : Fragment(R.layout.fragment_book) {
         setSearchView()
         setItemLayout()
 
-        bookViewModel.getDummyBorrowedBooks().observe(this, { listBook ->
-            populatePopularBook(listBook)
-//            populateNewestBook(listBook)
+        val listCategory = arrayOf("Novel", "Self Improvement")
+
+        setCategoryOne(listCategory[0])
+        setCategoryTwo(listCategory[1])
+
+    }
+
+    private fun setCategoryOne(category: String) {
+        binding.itemExplore.tvPopulars.text = category
+        bookViewModel.getBooksByCat(category).observe(viewLifecycleOwner, { listBookResource ->
+            when (listBookResource) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    listBookResource.data?.let { listBook ->
+                        if (listBook.isNotEmpty()) {
+                            populateBookCategoryOne(listBook)
+                        }
+                    }
+                }
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireContext(), listBookResource.message, Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
+    }
+
+    private fun setCategoryTwo(category: String) {
+        binding.itemExplore.tvNewest.text = category
+        bookViewModel.getBooksByCat(category).observe(viewLifecycleOwner, { listBookResource ->
+            when (listBookResource) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    listBookResource.data?.let { listBook ->
+                        if (listBook.isNotEmpty()) {
+                            populateBookCategoryTwo(listBook)
+                        }
+                    }
+                }
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireContext(), listBookResource.message, Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         })
     }
 
@@ -92,23 +134,23 @@ class BookFragment : Fragment(R.layout.fragment_book) {
 
     }
 
-    private fun populatePopularBook(listData: List<BorrowedBook>) {
-        val adapter = ItemBookCoverLinearAdapter(listData.map { it.bookData })
+    private fun populateBookCategoryOne(listData: List<Book>) {
+        val adapter = ItemBookCoverLinearAdapter(listData.map { it })
         adapter.onItemClick = { selectedData ->
             intentTo(BookDetailsActivity::class.java, selectedData.idBook)
         }
         binding.itemExplore.rvPopulars.adapter = adapter
     }
 
-//    private fun populateNewestBook(listData: List<Book>) {
-//        val adapter = ItemBookCoverGridAdapter()
-//        adapter.setData(listData)
-//        adapter.onItemClick = { selectedData ->
-//            intentTo(BookDetailsActivity::class.java, selectedData.idBook)
-//        }
-//        binding.itemExplore.rvNewest.layoutManager = GridLayoutManager(requireContext(), 3)
-//        binding.itemExplore.rvNewest.adapter = adapter
-//    }
+    private fun populateBookCategoryTwo(listData: List<Book>) {
+        val adapter = ItemBookCoverGridAdapter()
+        adapter.setData(listData)
+        adapter.onItemClick = { selectedData ->
+            intentTo(BookDetailsActivity::class.java, selectedData.idBook)
+        }
+        binding.itemExplore.rvNewest.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.itemExplore.rvNewest.adapter = adapter
+    }
 
     private fun <T> intentTo(destination: Class<T>, idBook: Int?) {
         val intent = Intent(requireContext(), destination)
