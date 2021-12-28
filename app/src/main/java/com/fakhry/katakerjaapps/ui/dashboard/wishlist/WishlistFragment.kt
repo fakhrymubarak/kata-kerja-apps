@@ -28,7 +28,7 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
                     when (listBookResource) {
                         is Resource.Loading -> {}
                         is Resource.Success -> {
-                            listBookResource.data?.let { listBook -> populateWishlistBook(listBook) }
+                            listBookResource.data?.let { listBook -> populateWishlistBook(listBook.map { it.bookData }) }
                         }
                         is Resource.Error -> {
                             Toast.makeText(

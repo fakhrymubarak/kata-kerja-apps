@@ -5,6 +5,7 @@ import com.fakhry.katakerjaapps.core.data.source.remote.RemoteBookDataSource
 import com.fakhry.katakerjaapps.core.data.source.remote.network.ApiResponse
 import com.fakhry.katakerjaapps.core.domain.model.Book
 import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
+import com.fakhry.katakerjaapps.core.domain.model.WishedBook
 import com.fakhry.katakerjaapps.core.domain.repository.IBookRepository
 import com.fakhry.katakerjaapps.core.helper.BookDataMapper
 import kotlinx.coroutines.flow.Flow
@@ -90,13 +91,18 @@ class BookRepository @Inject constructor(
             }
         }
 
-    override fun getWishBooks(idUser: Int): Flow<Resource<List<Book>>> =
+    override fun getWishBooks(idUser: Int): Flow<Resource<List<WishedBook>>> =
         flow {
             emit(Resource.Loading())
             when (val apiResponse = remoteBookDataSource.getWishBooksById(idUser).first()) {
                 is ApiResponse.Success -> {
                     val data =
-                        apiResponse.data.map { BookDataMapper.Book.mapResponseToDomain(it.wishlistBookData) }
+                        apiResponse.data.map {
+                            WishedBook(
+                                id = it.id,
+                                bookData = BookDataMapper.Book.mapResponseToDomain(it.wishlistBookData)
+                            )
+                        }
                     emit(Resource.Success(data))
                 }
                 is ApiResponse.Error -> {
@@ -117,6 +123,21 @@ class BookRepository @Inject constructor(
                 remoteBookDataSource.insertWishBook(authToken, idUser, idBook).first()) {
                 is ApiResponse.Success -> {
                     emit(Resource.Error("Success insert data."))
+                }
+                is ApiResponse.Error -> {
+                    emit(Resource.Error(apiResponse.errorMessage))
+                }
+                is ApiResponse.Empty -> {}
+            }
+        }
+
+    override fun delWishBook(authToken: String, idWish: Int): Flow<Resource<List<Nothing>>> =
+        flow {
+            emit(Resource.Loading())
+            when (val apiResponse =
+                remoteBookDataSource.delWishBook(authToken, idWish).first()) {
+                is ApiResponse.Success -> {
+                    emit(Resource.Error("Success delete data."))
                 }
                 is ApiResponse.Error -> {
                     emit(Resource.Error(apiResponse.errorMessage))

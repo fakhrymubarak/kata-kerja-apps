@@ -18,6 +18,7 @@ class BookDetailsViewModel @Inject constructor(
     private val bookUseCase: BookUseCase
 ) : ViewModel() {
     private var _userId by Delegates.notNull<Int>()
+    private var _wishId by Delegates.notNull<Int>()
     private lateinit var _authToken: String
 
     init {
@@ -37,8 +38,9 @@ class BookDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             bookUseCase.getWishBooks(_userId).onEach { listResourceWish ->
                 if (listResourceWish is Resource.Success) {
-                    listResourceWish.data?.forEach { book ->
-                        if (book.idBook == idBook) {
+                    listResourceWish.data?.forEach { wishedBook ->
+                        _wishId = wishedBook.id
+                        if (wishedBook.bookData.idBook == idBook) {
                             watchlistStatus.postValue(true)
                         } else {
                             watchlistStatus.postValue(false)
@@ -56,5 +58,8 @@ class BookDetailsViewModel @Inject constructor(
 
     fun insertWishBook(idBook: Int): LiveData<Resource<Nothing>> =
         bookUseCase.insertWishBooks(_authToken, _userId, idBook).asLiveData()
+
+    fun delWishBook(): LiveData<Resource<List<Nothing>>> =
+        bookUseCase.delWishBook(_authToken, _wishId).asLiveData()
 }
 

@@ -3,6 +3,7 @@ package com.fakhry.katakerjaapps.core.data.source.remote.network
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow.BorrowedBooksResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.details.BookDetailsResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.search.ListBooksResponse
+import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.delete.DelWishlistBookResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.show.WishlistBooksResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.store.StoreWishlistResponse
 import retrofit2.http.*
@@ -45,4 +46,12 @@ interface BookApiService {
         @Field("user_id") userId: Int,
         @Field("book_id") bookId: Int,
     ): StoreWishlistResponse
+
+
+    /* Wishlist Book*/
+    @DELETE("wish/delete/{id}")
+    suspend fun deleteWishlistBook(
+        @Header("Authorization") authToken: String,
+        @Path("id") idWish: Int,
+    ): DelWishlistBookResponse
 }

@@ -17,6 +17,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class BookDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookDetailsBinding
+    private lateinit var mBook: Book
     private val viewModel: BookDetailsViewModel by viewModels()
 
     private var isWishlist = false
@@ -40,13 +41,11 @@ class BookDetailsActivity : AppCompatActivity() {
                 }
             }
         })
-
-        //getWishlistStatus
-        //setWishlistButton
-        setWishlistButton()
     }
 
     private fun populateView(book: Book) {
+        mBook = book
+        getWishlistStatus()
         binding.apply {
             tvDetailTitle.text = book.title
             tvDetailAuthor.text = book.author
@@ -67,7 +66,15 @@ class BookDetailsActivity : AppCompatActivity() {
             }
 
             btnAddWishlist.setOnClickListener {
-                insertWishlistBook()
+                binding.btnAddWishlist.isEnabled = false
+                Timber.d("isWishlist $isWishlist")
+                if (!isWishlist) {
+                    insertWishlistBook()
+                } else {
+                    deleteWishlistBook()
+                }
+                isWishlist = !isWishlist
+                setWishlistButton()
             }
 
             btnShare.setOnClickListener {
@@ -76,24 +83,45 @@ class BookDetailsActivity : AppCompatActivity() {
         }
     }
 
+    private fun deleteWishlistBook() {
+        viewModel.delWishBook().observe(this, { delResource ->
+            binding.btnAddWishlist.isEnabled = true
+            if (delResource != null) {
+                when (delResource) {
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        Toast.makeText(this, delResource.message, Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(this, delResource.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
     private fun insertWishlistBook() {
-        Timber.d("0 btn pressed")
-        isWishlist = true
-        viewModel.insertWishBook().observe(this, { insertResource ->
-            Timber.d("1 vm run")
+        viewModel.insertWishBook(mBook.idBook).observe(this, { insertResource ->
+            binding.btnAddWishlist.isEnabled = true
             if (insertResource != null) {
                 when (insertResource) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
-                        Timber.d("2 vm return value")
                         Toast.makeText(this, insertResource.message, Toast.LENGTH_SHORT).show()
                     }
                     is Resource.Error -> {
-                        Timber.d("2 vm return error")
                         Toast.makeText(this, insertResource.message, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
+        })
+    }
+
+    private fun getWishlistStatus() {
+        binding.btnAddWishlist.isEnabled = true
+        viewModel.getWishListStatus(mBook.idBook).observe(this, { status ->
+            isWishlist = status
+            setWishlistButton()
         })
     }
 

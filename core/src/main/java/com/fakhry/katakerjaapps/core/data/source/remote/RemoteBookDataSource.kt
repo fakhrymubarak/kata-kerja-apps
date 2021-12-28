@@ -110,4 +110,20 @@ class RemoteBookDataSource @Inject constructor(private val bookApiService: BookA
                 Timber.e(e)
             }
         }.flowOn(Dispatchers.IO)
+
+
+    fun delWishBook(authToken: String, idWish: Int): Flow<ApiResponse<List<Nothing>>> =
+        flow {
+            try {
+                val response = bookApiService.deleteWishlistBook(authToken, idWish)
+                if (response.success) {
+                    emit(ApiResponse.Success(response.data))
+                } else {
+                    emit(ApiResponse.Error(response.message))
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.message.toString()))
+                Timber.e(e)
+            }
+        }.flowOn(Dispatchers.IO)
 }
