@@ -3,6 +3,7 @@ package com.fakhry.katakerjaapps.core.data.source.remote
 import com.fakhry.katakerjaapps.core.data.source.remote.network.ApiResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.network.BookApiService
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow.BorrowedBooksData
+import com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow.DataResponseItem
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.details.BookDetailsData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.search.SearchedBookData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.WishlistBooksData
@@ -17,12 +18,12 @@ import javax.inject.Singleton
 
 @Singleton
 class RemoteBookDataSource @Inject constructor(private val bookApiService: BookApiService) {
-    fun getBorrowedBooksById(userId: Int): Flow<ApiResponse<List<BorrowedBooksData>>> =
+    fun getBorrowedBooksById(userId: Int): Flow<ApiResponse<List<DataResponseItem>>> =
         flow {
             try {
                 val response = bookApiService.getBorrowedBooksById(userId)
                 if (response.success) {
-                    emit(ApiResponse.Success(response.pagingData.listBorrowedBooks))
+                    emit(ApiResponse.Success(response.dataResponse.dataResponseItem))
                 } else {
                     emit(ApiResponse.Error(response.message))
                 }

@@ -3,7 +3,6 @@ package com.fakhry.katakerjaapps.core.data.source.repository
 import com.fakhry.katakerjaapps.core.data.Resource
 import com.fakhry.katakerjaapps.core.data.source.remote.RemoteBookDataSource
 import com.fakhry.katakerjaapps.core.data.source.remote.network.ApiResponse
-import com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow.BorrowedBooksData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.wishlist.WishlistBooksData
 import com.fakhry.katakerjaapps.core.domain.model.Book
 import com.fakhry.katakerjaapps.core.domain.model.BorrowedBook
@@ -26,8 +25,16 @@ class BookRepository @Inject constructor(
             emit(Resource.Loading())
             when (val apiResponse = remoteBookDataSource.getBorrowedBooksById(idUser).first()) {
                 is ApiResponse.Success -> {
-                    val listBookDomain = mapListBorrowedBookToListBookDomain(apiResponse.data)
-                    emit(Resource.Success(listBookDomain))
+                    val borrowedBook = apiResponse.data.map {
+                        BorrowedBook(
+                            id = it.id,
+                            bookData = BookDataMapper.Book.mapResponseToDomain(it.borrowedBooksData),
+                            borrowDate = it.borrowDate,
+                            returnDate = it.returnDate,
+                            borrowStatus = it.status
+                        )
+                    }
+                    emit(Resource.Success(borrowedBook))
                 }
                 is ApiResponse.Error -> {
                     emit(Resource.Error(apiResponse.errorMessage))
@@ -119,27 +126,27 @@ class BookRepository @Inject constructor(
             }
         }
 
-    private suspend fun mapListBorrowedBookToListBookDomain(listBorrowedBooksData: List<BorrowedBooksData>): List<BorrowedBook> {
-        val listBookDetailsData = ArrayList<BorrowedBook>()
-        listBorrowedBooksData.map { borrowedBookData ->
-            getBookDetailsById(borrowedBookData.bookId).collectLatest { bookResource ->
-                if (bookResource is Resource.Success) {
-                    bookResource.data?.let {
-                        listBookDetailsData.add(
-                            BorrowedBook(
-                                id = borrowedBookData.id,
-                                bookData = it,
-                                borrowDate = borrowedBookData.borrowDate,
-                                returnDate = borrowedBookData.returnDate,
-                                borrowStatus = borrowedBookData.status,
-                            )
-                        )
-                    }
-                }
-            }
-        }
-        return listBookDetailsData
-    }
+//    private suspend fun mapListBorrowedBookToListBookDomain(listBorrowedBooksData: List<BorrowedBooksData>): List<BorrowedBook> {
+//        val listBookDetailsData = ArrayList<BorrowedBook>()
+//        listBorrowedBooksData.map { borrowedBookData ->
+//            getBookDetailsById(borrowedBookData.bookId).collectLatest { bookResource ->
+//                if (bookResource is Resource.Success) {
+//                    bookResource.data?.let {
+//                        listBookDetailsData.add(
+//                            BorrowedBook(
+//                                id = borrowedBookData.id,
+//                                bookData = it,
+//                                borrowDate = borrowedBookData.borrowDate,
+//                                returnDate = borrowedBookData.returnDate,
+//                                borrowStatus = borrowedBookData.status,
+//                            )
+//                        )
+//                    }
+//                }
+//            }
+//        }
+//        return listBookDetailsData
+//    }
 
     private suspend fun mapListWishBookToListBookDomain(listWishBook: List<WishlistBooksData>): List<Book> {
         val listBookDetailsData = ArrayList<Book>()

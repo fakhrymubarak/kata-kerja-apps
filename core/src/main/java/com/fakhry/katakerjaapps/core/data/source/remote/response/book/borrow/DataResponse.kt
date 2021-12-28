@@ -2,13 +2,13 @@ package com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow
 
 import com.google.gson.annotations.SerializedName
 
-data class PagingData(
+data class DataResponse(
 
 	@field:SerializedName("per_page")
 	val perPage: Int,
 
 	@field:SerializedName("data")
-	val listBorrowedBooks: List<BorrowedBooksData>,
+	val dataResponseItem: List<DataResponseItem>,
 
 	@field:SerializedName("last_page")
 	val lastPage: Int,

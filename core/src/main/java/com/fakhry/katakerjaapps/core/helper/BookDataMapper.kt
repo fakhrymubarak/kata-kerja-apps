@@ -1,5 +1,6 @@
 package com.fakhry.katakerjaapps.core.helper
 
+import com.fakhry.katakerjaapps.core.data.source.remote.response.book.borrow.BorrowedBooksData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.details.BookDetailsData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.book.search.SearchedBookData
 import com.fakhry.katakerjaapps.core.domain.model.Book as BookDomain
@@ -35,5 +36,19 @@ object BookDataMapper {
                     category = bookData.kategori,
                 )
             }
+
+        fun mapResponseToDomain(borrowedBooksData: BorrowedBooksData): BookDomain =
+            BookDomain(
+                idBook = borrowedBooksData.id,
+                isbn = borrowedBooksData.isbn,
+                title = borrowedBooksData.judul,
+                description = borrowedBooksData.deskripsi,
+                author = borrowedBooksData.author,
+                publisher = borrowedBooksData.penerbit,
+                releaseYear = borrowedBooksData.tahunTerbit.toString(),
+                stock = borrowedBooksData.stock,
+                cover = borrowedBooksData.fotoBuku,
+                category = borrowedBooksData.kategori,
+            )
     }
 }
