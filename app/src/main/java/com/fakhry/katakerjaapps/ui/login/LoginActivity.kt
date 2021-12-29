@@ -12,9 +12,9 @@ import com.fakhry.katakerjaapps.R
 import com.fakhry.katakerjaapps.core.data.Resource
 import com.fakhry.katakerjaapps.core.domain.model.Login
 import com.fakhry.katakerjaapps.databinding.ActivityLoginBinding
-import com.fakhry.katakerjaapps.helper.FormValidator.editTextIsEmpty
-import com.fakhry.katakerjaapps.helper.FormValidator.emailFormat
-import com.fakhry.katakerjaapps.helper.FormValidator.passwordFormat
+import com.fakhry.katakerjaapps.helper.FormValidator.editTextIsNotEmpty
+import com.fakhry.katakerjaapps.helper.FormValidator.emailFormatMatched
+import com.fakhry.katakerjaapps.helper.FormValidator.passwordFormatMatched
 import com.fakhry.katakerjaapps.ui.dashboard.MainActivity
 import com.fakhry.katakerjaapps.ui.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,10 +31,10 @@ class LoginActivity : AppCompatActivity() {
 
         binding.apply {
             btnLogin.setOnClickListener {
-                if (tilEmail.editTextIsEmpty() &&
-                    tilEmail.emailFormat() &&
-                    tilPassword.editTextIsEmpty() &&
-                    tilPassword.passwordFormat()
+                if (tilEmail.editTextIsNotEmpty() &&
+                    tilEmail.emailFormatMatched() &&
+                    tilPassword.editTextIsNotEmpty() &&
+                    tilPassword.passwordFormatMatched()
                 ) {
                     val email = etEmail.text.toString()
                     val password = etPassword.text.toString()

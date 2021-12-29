@@ -1,8 +1,8 @@
 package com.fakhry.katakerjaapps.core.data.source.remote.network
 
+import com.fakhry.katakerjaapps.core.data.source.remote.response.user.details.UserDetailsResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.login.LoginResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.register.RegisterResponse
-import com.fakhry.katakerjaapps.core.data.source.remote.response.user.details.UserDetailsResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.update.UserUpdateResponse
 import retrofit2.http.*
 
@@ -42,5 +42,15 @@ interface UserApiService {
         @Field("c_password") c_password: String = password,
         @Field("staff_sejak") staffSejak: String = "2000-01-01",
         @Field("id_role") idRole: Int = 4,
+    ): RegisterResponse
+
+    /* Update Profile */
+    @FormUrlEncoded
+    @PUT("users/update")
+    suspend fun updateProfile(
+        @Field("email") email: String,
+        @Field("name") name: String,
+        @Field("tglLahir") tglLahir: String,
+        @Field("telp") telp: String,
     ): RegisterResponse
 }

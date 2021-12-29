@@ -5,7 +5,7 @@ import com.fakhry.katakerjaapps.R
 import com.google.android.material.textfield.TextInputLayout
 
 object FormValidator {
-    fun TextInputLayout.editTextIsEmpty(text: String = editText?.text.toString()) =
+    fun TextInputLayout.editTextIsNotEmpty(text: String = editText?.text.toString()) =
         if (text == ""){
             error = editText?.context?.getString(R.string.error_empty_edit_text)
             editText?.requestFocus()
@@ -16,7 +16,7 @@ object FormValidator {
 
         }
 
-    fun TextInputLayout.emailFormat(email: String = editText?.text.toString()) =
+    fun TextInputLayout.emailFormatMatched(email: String = editText?.text.toString()) =
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             error = editText?.context?.getString(R.string.error_email_format)
             editText?.requestFocus()
@@ -26,7 +26,7 @@ object FormValidator {
             true
         }
 
-    fun TextInputLayout.passwordFormat(password: String = editText?.text.toString()) =
+    fun TextInputLayout.passwordFormatMatched(password: String = editText?.text.toString()) =
         if (password.length < 6) {
             error = editText?.context?.getString(R.string.error_password_format)
             editText?.requestFocus()
