@@ -123,6 +123,7 @@ class BookFragment : Fragment(R.layout.fragment_book) {
                     setLoadingSearch(false)
                     listSearchedBookResource.data?.let { listBook ->
                         if (listBook.isNotEmpty()) {
+                            binding.itemExplore.root.visibility = View.GONE
                             populateSearchedBooks(listBook)
                         }
                     }
@@ -210,7 +211,7 @@ class BookFragment : Fragment(R.layout.fragment_book) {
                 rvSearch.visibility = View.INVISIBLE
             } else {
                 pbSearchList.stopShimmer()
-                pbSearchList.visibility = View.INVISIBLE
+                pbSearchList.visibility = View.GONE
                 rvSearch.visibility = View.VISIBLE
             }
         }
