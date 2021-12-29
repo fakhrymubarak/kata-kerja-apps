@@ -26,11 +26,15 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
             viewModel.getWishlistBooks(userId).observe(viewLifecycleOwner, { listBookResource ->
                 if (listBookResource != null) {
                     when (listBookResource) {
-                        is Resource.Loading -> {}
+                        is Resource.Loading -> {
+                            setListBookLoading(true)
+                        }
                         is Resource.Success -> {
+                            setListBookLoading(false)
                             listBookResource.data?.let { listBook -> populateWishlistBook(listBook.map { it.bookData }) }
                         }
                         is Resource.Error -> {
+                            setListBookLoading(false)
                             Toast.makeText(
                                 requireContext(), listBookResource.message, Toast.LENGTH_SHORT
                             ).show()
@@ -62,5 +66,19 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
         val intent = Intent(requireContext(), destination)
         if (idBook != null) intent.putExtra(BookDetailsActivity.EXTRA_ID_BOOK, idBook)
         startActivity(intent)
+    }
+
+    private fun setListBookLoading(state: Boolean) {
+        binding.apply {
+            if (state) {
+                pbWishList.startShimmer()
+                pbWishList.visibility = View.VISIBLE
+                rvWishlist.visibility = View.GONE
+            } else {
+                pbWishList.stopShimmer()
+                pbWishList.visibility = View.GONE
+                rvWishlist.visibility = View.VISIBLE
+            }
+        }
     }
 }

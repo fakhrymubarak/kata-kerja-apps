@@ -10,7 +10,7 @@
     <color name="danger">#FFFF463F</color>
     <color name="success">#FF2ABA4C</color>
 
-
+    <color name="transparent">#00000000</color>
     <color name="black">#FF000000</color>
     <color name="gray">#FF333333</color>
     <color name="gray_light">#BBBBBB</color>

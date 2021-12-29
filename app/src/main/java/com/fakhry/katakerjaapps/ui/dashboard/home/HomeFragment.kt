@@ -32,8 +32,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewModel.getBorrowedBooksById(userId).observe(viewLifecycleOwner, { listTransRes ->
             if (listTransRes != null) {
                 when (listTransRes) {
-                    is Resource.Loading -> {}
+                    is Resource.Loading -> {
+                        setListBookLoading(true)
+                    }
                     is Resource.Success -> {
+                        setListBookLoading(false)
                         listTransRes.data?.let { listTransaction ->
                             if (listTransaction.isNotEmpty()) {
                                 val listBorrowed = listTransaction.filter { it.borrowStatus == 1 }
@@ -45,12 +48,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                             } else {
                                 binding.animEmptyBorrow.visibility = View.VISIBLE
                                 binding.tvEmptyBorrow.visibility = View.VISIBLE
-                                binding.itemStatistics.tvNumberRead.text = "0"
-                                binding.itemStatistics.tvNumberBorrow.text = "0"
+                                binding.layoutStatistics.tvNumberRead.text = "0"
+                                binding.layoutStatistics.tvNumberBorrow.text = "0"
                             }
                         }
                     }
                     is Resource.Error -> {
+                        setListBookLoading(false)
                         Toast.makeText(
                             requireContext(), listTransRes.message, Toast.LENGTH_SHORT
                         ).show()
@@ -64,7 +68,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         if (listData.isEmpty()) {
             binding.tvBorrowed.visibility = View.GONE
             binding.rvBorrowed.visibility = View.GONE
-            binding.itemStatistics.tvNumberBorrow.text = "0"
+            binding.layoutStatistics.tvNumberBorrow.text = "0"
         } else {
             binding.tvBorrowed.visibility = View.VISIBLE
             binding.rvBorrowed.visibility = View.VISIBLE
@@ -74,7 +78,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 intentTo(BookDetailsActivity::class.java, selectedData.bookData.idBook)
             }
             binding.rvBorrowed.adapter = itemBookHomeAdapter
-            binding.itemStatistics.tvNumberBorrow.text = listData.size.toString()
+            binding.layoutStatistics.tvNumberBorrow.text = listData.size.toString()
         }
     }
 
@@ -82,7 +86,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         if (listData.isEmpty()) {
             binding.tvHasRead.visibility = View.GONE
             binding.rvHasRead.visibility = View.GONE
-            binding.itemStatistics.tvNumberRead.text = "0"
+            binding.layoutStatistics.tvNumberRead.text = "0"
         } else {
             binding.tvHasRead.visibility = View.VISIBLE
             binding.rvHasRead.visibility = View.VISIBLE
@@ -91,7 +95,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 intentTo(BookDetailsActivity::class.java, selectedData.bookData.idBook)
             }
             binding.rvHasRead.adapter = itemBookHomeAdapter
-            binding.itemStatistics.tvNumberRead.text = listData.size.toString()
+            binding.layoutStatistics.tvNumberRead.text = listData.size.toString()
         }
     }
 
@@ -99,5 +103,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val intent = Intent(requireContext(), destination)
         if (idBook != null) intent.putExtra(BookDetailsActivity.EXTRA_ID_BOOK, idBook)
         startActivity(intent)
+    }
+
+    private fun setListBookLoading(state: Boolean) {
+        binding.apply {
+            if (state) {
+                pbTopRated.startShimmer()
+                pbTopRated.visibility = View.VISIBLE
+                rvBorrowed.visibility = View.GONE
+                tvHasRead.visibility = View.GONE
+                rvHasRead.visibility = View.GONE
+            } else {
+                pbTopRated.stopShimmer()
+                pbTopRated.visibility = View.GONE
+                rvBorrowed.visibility = View.VISIBLE
+                tvHasRead.visibility = View.VISIBLE
+                rvHasRead.visibility = View.VISIBLE
+            }
+        }
     }
 }

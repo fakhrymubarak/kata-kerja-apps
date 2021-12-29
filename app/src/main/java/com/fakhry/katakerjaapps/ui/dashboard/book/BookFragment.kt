@@ -35,7 +35,6 @@ class BookFragment : Fragment(R.layout.fragment_book) {
 
         setCategoryOne(listCategory[0])
         setCategoryTwo(listCategory[1])
-
     }
 
     private fun setItemLayout() {
@@ -65,19 +64,22 @@ class BookFragment : Fragment(R.layout.fragment_book) {
     }
 
     private fun setCategoryOne(category: String) {
-        binding.itemExplore.tvCatOne.text = category
+        binding.itemExplore.tvFirstCat.text = category
         bookViewModel.getBooksByCat(category).observe(viewLifecycleOwner, { listBookResource ->
             when (listBookResource) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    setLoadingCatOne(true)
+                }
                 is Resource.Success -> {
                     listBookResource.data?.let { listBook ->
+                        setLoadingCatOne(false)
                         if (listBook.isNotEmpty()) {
                             populateBookCategoryOne(listBook)
-                            binding.itemExplore.tvCatOne.visibility = View.VISIBLE
                         }
                     }
                 }
                 is Resource.Error -> {
+                    setLoadingCatOne(false)
                     Toast.makeText(
                         requireContext(), listBookResource.message, Toast.LENGTH_SHORT
                     ).show()
@@ -87,19 +89,22 @@ class BookFragment : Fragment(R.layout.fragment_book) {
     }
 
     private fun setCategoryTwo(category: String) {
-        binding.itemExplore.tvCatTwo.text = category
+        binding.itemExplore.tvSecondCat.text = category
         bookViewModel.getBooksByCat(category).observe(viewLifecycleOwner, { listBookResource ->
             when (listBookResource) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    setLoadingCatTwo(true)
+                }
                 is Resource.Success -> {
+                    setLoadingCatTwo(false)
                     listBookResource.data?.let { listBook ->
                         if (listBook.isNotEmpty()) {
                             populateBookCategoryTwo(listBook)
-                            binding.itemExplore.tvCatTwo.visibility = View.VISIBLE
                         }
                     }
                 }
                 is Resource.Error -> {
+                    setLoadingCatTwo(false)
                     Toast.makeText(
                         requireContext(), listBookResource.message, Toast.LENGTH_SHORT
                     ).show()
@@ -111,8 +116,11 @@ class BookFragment : Fragment(R.layout.fragment_book) {
     private fun searchBook(query: String) {
         bookViewModel.searchBooks(query).observe(viewLifecycleOwner, { listSearchedBookResource ->
             when (listSearchedBookResource) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    setLoadingSearch(true)
+                }
                 is Resource.Success -> {
+                    setLoadingSearch(false)
                     listSearchedBookResource.data?.let { listBook ->
                         if (listBook.isNotEmpty()) {
                             populateSearchedBooks(listBook)
@@ -120,6 +128,7 @@ class BookFragment : Fragment(R.layout.fragment_book) {
                     }
                 }
                 is Resource.Error -> {
+                    setLoadingSearch(false)
                     Toast.makeText(
                         requireContext(), listSearchedBookResource.message, Toast.LENGTH_SHORT
                     ).show()
@@ -142,7 +151,7 @@ class BookFragment : Fragment(R.layout.fragment_book) {
         adapter.onItemClick = { selectedData ->
             intentTo(BookDetailsActivity::class.java, selectedData.idBook)
         }
-        binding.itemExplore.rvPopulars.adapter = adapter
+        binding.itemExplore.rvFirstCat.adapter = adapter
     }
 
     private fun populateBookCategoryTwo(listData: List<Book>) {
@@ -151,13 +160,59 @@ class BookFragment : Fragment(R.layout.fragment_book) {
         adapter.onItemClick = { selectedData ->
             intentTo(BookDetailsActivity::class.java, selectedData.idBook)
         }
-        binding.itemExplore.rvNewest.layoutManager = GridLayoutManager(requireContext(), 3)
-        binding.itemExplore.rvNewest.adapter = adapter
+        binding.itemExplore.rvSecondCat.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.itemExplore.rvSecondCat.adapter = adapter
     }
 
     private fun <T> intentTo(destination: Class<T>, idBook: Int?) {
         val intent = Intent(requireContext(), destination)
         if (idBook != null) intent.putExtra(BookDetailsActivity.EXTRA_ID_BOOK, idBook)
         startActivity(intent)
+    }
+
+    private fun setLoadingCatOne(state: Boolean) {
+        binding.itemExplore.apply {
+            if (state) {
+                pbFirstCat.startShimmer()
+                pbFirstCat.visibility = View.VISIBLE
+                rvFirstCat.visibility = View.INVISIBLE
+                tvFirstCat.visibility = View.INVISIBLE
+            } else {
+                pbFirstCat.stopShimmer()
+                pbFirstCat.visibility = View.INVISIBLE
+                rvFirstCat.visibility = View.VISIBLE
+                tvFirstCat.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun setLoadingCatTwo(state: Boolean) {
+        binding.itemExplore.apply {
+            if (state) {
+                pbSecondCat.startShimmer()
+                pbSecondCat.visibility = View.VISIBLE
+                rvSecondCat.visibility = View.INVISIBLE
+                tvSecondCat.visibility = View.INVISIBLE
+            } else {
+                pbSecondCat.stopShimmer()
+                pbSecondCat.visibility = View.INVISIBLE
+                rvSecondCat.visibility = View.VISIBLE
+                tvSecondCat.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun setLoadingSearch(state: Boolean) {
+        binding.itemSearchList.apply {
+            if (state) {
+                pbSearchList.startShimmer()
+                pbSearchList.visibility = View.VISIBLE
+                rvSearch.visibility = View.INVISIBLE
+            } else {
+                pbSearchList.stopShimmer()
+                pbSearchList.visibility = View.INVISIBLE
+                rvSearch.visibility = View.VISIBLE
+            }
+        }
     }
 }

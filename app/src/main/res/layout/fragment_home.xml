@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    android:paddingBottom="100dp">
+    android:paddingBottom="50dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/item_statistics"
-            layout="@layout/item_statistics"
+            android:id="@+id/layout_statistics"
+            layout="@layout/layout_statistics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +29,7 @@
             android:text="@string/borrowing"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_statistics"
+            app:layout_constraintTop_toBottomOf="@+id/layout_statistics"
             tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -93,7 +93,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_statistics"
+            app:layout_constraintTop_toBottomOf="@id/layout_statistics"
             app:lottie_autoPlay="true"
             app:lottie_fileName="emptydata.json"
             app:lottie_loop="true" />
@@ -110,5 +110,33 @@
             app:layout_constraintStart_toStartOf="@+id/anim_empty_borrow"
             app:layout_constraintTop_toBottomOf="@+id/anim_empty_borrow" />
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/pb_top_rated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_borrowed"
+            app:shimmer_auto_start="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_book_transaction_placeholder" />
+
+                <include layout="@layout/item_book_transaction_placeholder" />
+
+                <include layout="@layout/item_book_transaction_placeholder" />
+
+                <include layout="@layout/item_book_transaction_placeholder" />
+
+                <include layout="@layout/item_book_transaction_placeholder" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
