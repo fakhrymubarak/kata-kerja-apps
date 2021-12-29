@@ -1,8 +1,8 @@
 package com.fakhry.katakerjaapps.core.helper
 
+import com.fakhry.katakerjaapps.core.data.source.remote.response.user.details.UserDetailsData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.login.LoginData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.register.RegisterData
-import com.fakhry.katakerjaapps.core.data.source.remote.response.user.details.UserDetailsData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.update.UserUpdateData
 import com.fakhry.katakerjaapps.core.domain.model.Login as LoginDomain
 import com.fakhry.katakerjaapps.core.domain.model.Register as RegisterDomain
@@ -19,7 +19,7 @@ object UserDataMapper {
                 name = userDetailData.name,
                 avatar = userDetailData.avatar ?: "",
                 fullAddress = "",
-                bornDate = userDetailData.tglLahir,
+                bornDate = userDetailData.tglLahir.substring(0, 10),
                 phoneNumber = userDetailData.telp,
                 memberSince = userDetailData.memberSejak,
                 staffSince = userDetailData.staffSejak,
@@ -33,7 +33,7 @@ object UserDataMapper {
                 name = userDetailData.name,
                 avatar = userDetailData.avatar ?: "",
                 fullAddress = "",
-                bornDate = userDetailData.tglLahir,
+                bornDate = userDetailData.tglLahir.substring(0, 10),
                 phoneNumber = userDetailData.telp,
                 memberSince = userDetailData.memberSejak,
                 staffSince = userDetailData.staffSejak,

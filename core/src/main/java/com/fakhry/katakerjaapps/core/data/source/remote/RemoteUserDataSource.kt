@@ -2,9 +2,9 @@ package com.fakhry.katakerjaapps.core.data.source.remote
 
 import com.fakhry.katakerjaapps.core.data.source.remote.network.ApiResponse
 import com.fakhry.katakerjaapps.core.data.source.remote.network.UserApiService
+import com.fakhry.katakerjaapps.core.data.source.remote.response.user.details.UserDetailsData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.login.LoginData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.register.RegisterData
-import com.fakhry.katakerjaapps.core.data.source.remote.response.user.details.UserDetailsData
 import com.fakhry.katakerjaapps.core.data.source.remote.response.user.update.UserUpdateData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -64,24 +64,44 @@ class RemoteUserDataSource @Inject constructor(private val userApiService: UserA
         }.flowOn(Dispatchers.IO)
 
     fun postRegister(
-        email: String,
-        password: String,
-        name: String,
-        bornDate: String,
-        phoneNumber: String,
+        email: String, password: String, name: String, bornDate: String, phoneNumber: String,
     ): Flow<ApiResponse<RegisterData>> =
         flow {
             try {
                 val response = userApiService.postRegister(
-                    email,
-                    password,
-                    name,
-                    bornDate,
-                    phoneNumber,
-                    currentDate
+                    email, password, name, bornDate, phoneNumber, currentDate
                 )
                 if (response.success) {
                     emit(ApiResponse.Success(response.registerData))
+                } else {
+                    emit(ApiResponse.Error(response.message))
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.message.toString()))
+                Timber.e(e)
+            }
+        }.flowOn(Dispatchers.IO)
+
+    fun updateProfile(
+        authToken: String,
+        userId: Int,
+        email: String,
+        name: String,
+        bornDate: String,
+        phoneNumber: String
+    ): Flow<ApiResponse<UserUpdateData>> =
+        flow {
+            try {
+                val response = userApiService.updateProfile(
+                    authToken,
+                    userId,
+                    email,
+                    name,
+                    bornDate,
+                    phoneNumber
+                )
+                if (response.success) {
+                    emit(ApiResponse.Success(response.userUpdateData))
                 } else {
                     emit(ApiResponse.Error(response.message))
                 }

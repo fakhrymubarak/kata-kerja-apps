@@ -28,6 +28,16 @@ class UserInteractor @Inject constructor(private val mIUserRepository: IUserRepo
     ): Flow<Resource<Register>> =
         mIUserRepository.postRegister(email, password, name, bornDate, phoneNumber)
 
+    override fun updateUser(
+        authToken: String,
+        userId: Int,
+        email: String,
+        name: String,
+        bornDate: String,
+        phoneNumber: String
+    ): Flow<Resource<User>> =
+        mIUserRepository.updateUser(authToken, userId, email, name, bornDate, phoneNumber)
+
     override fun saveAuthToken(authToken: String) {
         mIUserRepository.saveAuthToken(authToken)
     }

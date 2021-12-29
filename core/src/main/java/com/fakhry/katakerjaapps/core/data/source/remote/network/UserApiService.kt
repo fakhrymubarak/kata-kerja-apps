@@ -46,11 +46,13 @@ interface UserApiService {
 
     /* Update Profile */
     @FormUrlEncoded
-    @PUT("users/update")
+    @PUT("users/update/{id}")
     suspend fun updateProfile(
+        @Header("Authorization") authToken: String,
+        @Path("id") idUser: Int,
         @Field("email") email: String,
         @Field("name") name: String,
         @Field("tglLahir") tglLahir: String,
         @Field("telp") telp: String,
-    ): RegisterResponse
+    ): UserUpdateResponse
 }

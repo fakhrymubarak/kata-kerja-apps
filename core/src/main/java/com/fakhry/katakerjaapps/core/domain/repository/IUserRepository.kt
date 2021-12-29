@@ -17,7 +17,14 @@ interface IUserRepository {
         bornDate: String,
         phoneNumber: String,
     ): Flow<Resource<Register>>
-
+    fun updateUser(
+        authToken: String,
+        userId: Int,
+        email: String,
+        name: String,
+        bornDate: String,
+        phoneNumber: String
+    ): Flow<Resource<User>>
     fun saveAuthToken(authToken: String)
     fun getAuthToken(): Flow<String>
 

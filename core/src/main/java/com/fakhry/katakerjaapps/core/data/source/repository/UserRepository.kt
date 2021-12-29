@@ -104,6 +104,37 @@ class UserRepository @Inject constructor(
             }
         }
 
+    override fun updateUser(
+        authToken: String,
+        userId: Int,
+        email: String,
+        name: String,
+        bornDate: String,
+        phoneNumber: String
+    ): Flow<Resource<User>> =
+        flow {
+            emit(Resource.Loading())
+            when (val apiResponse =
+                remoteUserDataSource.updateProfile(
+                    authToken,
+                    userId,
+                    email,
+                    name,
+                    bornDate,
+                    phoneNumber
+                ).first()) {
+                is ApiResponse.Success -> {
+                    val data = UserDataMapper.User.mapResponseToDomain(apiResponse.data)
+                    emit(Resource.Success(data))
+                }
+                is ApiResponse.Error -> {
+                    emit(Resource.Error(apiResponse.errorMessage))
+                }
+                is ApiResponse.Empty -> {}
+
+            }
+        }
+
     override fun saveAuthToken(authToken: String) {
         CoroutineScope(Dispatchers.IO).launch { localUserDataSource.saveAuthToken(authToken) }
     }
